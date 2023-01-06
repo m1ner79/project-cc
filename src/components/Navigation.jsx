@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navbar,Nav, Container} from 'react-bootstrap';
+
+import {Navbar,Nav, Container, Button} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 
 function Navigation() {
@@ -11,15 +11,12 @@ function Navigation() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#add_child">Add Child</Nav.Link>
-              <Nav.Link href="#communicate">Communicate</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
-                Dank memes
-              </Nav.Link>
+            <Button classname='logoutButton' variant="light">Logout</Button>{' '}
             </Nav>
+            <Image className='avatar' src="https://avatars.githubusercontent.com/u/55558050?s=40&v=4"
+                  alt="avatar" roundedCircle/>
           </Navbar.Collapse>
         </Container>
       </Navbar>
