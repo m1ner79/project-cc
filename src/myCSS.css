@@ -1,0 +1,62 @@
+
+h1 {
+    color: #F4900C;
+}
+
+.avatar {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+}
+
+.regForm {
+    margin-top: 10px;
+}
+
+.home {
+    margin-top: 10px;
+}
+
+.mainmenu {
+    margin-top: 10px;
+}
+
+.connect {
+    margin-top: 10px;
+}
+
+.sidebar {
+    text-align: left;
+    background-color: #8dafce;
+}
+
+.chat {
+    flex: 2;
+    background-color: #664857;
+}
+
+
+.regFormCard {
+    background-color: #212529;
+    color: white;
+}
+
+.addChildButton {
+    background-color: #009fff;
+    border-color: #009fff;
+}
+
+.addChildButton:hover {
+    background-color: #00beff;
+    border-color: #00beff;
+}
+
+.connectButton {
+    background-color: #273c4d;
+    border-color: #273c4d;
+}
+
+.connectButton:hover {
+    background-color: #0e6376;
+    border-color: #0e6376;
+}
