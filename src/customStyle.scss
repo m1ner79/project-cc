@@ -1,0 +1,213 @@
+.regForm {
+    margin-top: 10px;
+}
+
+.navigation {
+  .avatar {
+    width: 40px;
+    cursor: pointer;
+    margin: 5px;
+  }
+}
+
+.home {
+    margin-top: 10px;
+    h1 {
+        color: #F4900C;
+    }
+}
+
+.mainmenu {
+    margin-top: 10px;
+}
+
+.connect {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  height: 100vh;
+
+  .connectArea {
+    background-color: #8dafce;
+    border: 1px solid #212529;
+    border-radius: 10px;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+
+    .sidebar {
+      flex: 1;
+      position: relative;
+      border-right: 1px solid #212529;
+      background-color: #009fff;
+
+      .search {
+        .searchInput {
+          height: 50px;
+          border-bottom: 2px solid white;
+
+          .inputSearch {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: white;
+
+            &::placeholder {
+              color: white;
+            }
+          }
+        }
+      }
+
+      .userChats {
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        gap: 10px;
+
+        &:hover {
+          background-color: #8dafce;
+        }
+
+        .avatar {
+          width: 40px;
+        }
+
+        .userInfo {
+          align-items: center;
+          gap: 10px;
+          color: #273c4d;
+          cursor: pointer;
+
+          span {
+            font-size: large;
+            font-weight: bolder;
+          }
+
+          p {
+            font-size: smaller;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .chat {
+      flex: 2;
+      background-color: #273c4d;
+
+      .chatDetails {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 50px;
+        border-bottom: 2px solid white;
+
+        span {
+          color: white;
+        }
+
+        .icons {
+          display: flex;
+          justify-content: end;
+          .groupIcons {
+            .btn-custOpt {
+              background-color: transparent;
+              border: transparent;
+              color: #009fff;
+
+              &:hover {
+                color: #8dafce;
+              }
+            }
+          }
+        }
+      }
+
+      .messages {
+        height: 70%;
+        overflow: scroll;
+
+        .message {
+          display: flex;
+          margin-bottom: 10px;
+
+          .messageDetails {
+            display: flex;
+            flex-direction: column;
+            font-size: x-small;
+            font-weight: bolder;
+
+            .avatar {
+              width: 40px;
+            }
+          }
+
+          .messageSubject {
+            display: flex;
+            flex-direction: column;
+            max-width: 80%;
+
+            p {
+              background-color: white;
+              border-radius: 0px 10px 10px 10px;
+              max-width: max-content;
+            }
+          }
+
+          &.loggedUser {
+            flex-direction: row-reverse;
+
+            .messageSubject {
+              align-items: flex-end;
+
+              p {
+                background-color: wheat;
+                border-radius: 10px 0px 10px 10px;
+              }
+            }
+          }
+        }
+      }
+
+      .input {
+        height: 50px;
+        border-top: 2px solid white;
+        display: flex;
+        align-items: flex-end;
+
+        .inputText {
+          cursor: pointer;
+          border-top-right-radius: 0%;
+          border-bottom-right-radius: 0%;
+        }
+
+        .btn-custSend {
+          padding-top: -10px;
+          border-top-left-radius: 0%;
+          border-bottom-left-radius: 0%;
+          background-color: #f4900c;
+          size: 24px;
+          font-size: medium;
+
+          &:hover {
+            background-color: #b79600;
+          }
+        }
+        // having trouble to seet this container at the bottom, ask for help
+        .inputArea {
+          display: flex;
+          align-items: center;
+          background-color: white;
+          font-size: medium;
+          border-radius: 0%;
+          border: none;
+          height: 80%;
+          padding-top: 6px;
+        }
+      }
+    }
+  }
+}
