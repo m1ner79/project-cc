@@ -6,10 +6,10 @@ import Chats from './Chats';
 function Sidebar() {
   return (
     <>
-    <Container className='sidebar'>
+    <Container className="sidebar">
       <br></br>
       <Search />
-      <hr></hr>
+      <br></br>
       <Chats />
     </Container>
     </>

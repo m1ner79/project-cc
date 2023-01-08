@@ -1,30 +1,40 @@
-import React from 'react'
-import { Container, Form } from 'react-bootstrap'
-import Messages from './Messages'
-import Input from './Input'
+import React from "react";
+import { Container, Button, ButtonGroup } from "react-bootstrap";
+import {
+  BsFillCameraReelsFill,
+  BsFillTelephoneFill,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
+import Messages from "./Messages";
+import Input from "./Input";
 
 function Chat() {
   return (
-    <Container className='chat'>
+    <Container className="chat">
       <br></br>
-      <Container>
-      <Form.Control
-        type="text"
-        placeholder="Name of person you are chatting with"
-        aria-label="Disabled input example"
-        disabled
-        readOnly
-      />
+      <Container className="chatDetails">
+        <span>Other person</span>
+        {/* future proofing */}
+        <Container className="icons">
+          <ButtonGroup className="groupIcons" size="sm">
+            <Button variant="custOpt">
+              <BsFillCameraReelsFill />
+            </Button>
+            <Button variant="custOpt">
+              <BsFillTelephoneFill />
+            </Button>
+            <Button variant="custOpt">
+              <BsThreeDotsVertical />
+            </Button>
+          </ButtonGroup>
+        </Container>
       </Container>
-      <hr></hr>
-      <Container>
+        <br></br>
         <Messages />
-        <hr></hr>
+        <br></br>
         <Input />
-      </Container>
     </Container>
-    
-  )
+  );
 }
 
-export default Chat
+export default Chat;

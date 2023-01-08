@@ -4,7 +4,7 @@ import Image from 'react-bootstrap/Image'
 
 function Navigation() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className='navigation' collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
         <Image src="logo.png" rounded/>
           <Navbar.Brand href="#home">Creche Connect</Navbar.Brand>
