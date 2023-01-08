@@ -26,7 +26,7 @@ function Login() {
   };
 
   return (
-    <Container className="form">
+    <Container className="form login">
       <Card>
         <Card.Header className="formCard" as="h5">
           <Image src="logo.png" rounded />
