@@ -144,6 +144,11 @@
             font-size: x-small;
             font-weight: bolder;
 
+            span {
+              text-align: start;
+              color: white;
+            }
+
             .avatar {
               width: 40px;
             }
@@ -159,6 +164,7 @@
               border-radius: 0px 10px 10px 10px;
               max-width: max-content;
             }
+            
           }
 
           &.loggedUser {
@@ -170,6 +176,7 @@
               p {
                 background-color: wheat;
                 border-radius: 10px 0px 10px 10px;
+                text-align: left;
               }
             }
           }
