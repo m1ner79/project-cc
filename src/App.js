@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "./myCSS.css";
 import "./customStyle.scss";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
