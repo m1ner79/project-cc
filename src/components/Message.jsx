@@ -15,7 +15,13 @@ function Message() {
           <span>time/date</span>
         </Container>
         <Container className="messageSubject">
-          <p>Yo,yo!</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <Image
+            className="avatar"
+            src="https://avatars.githubusercontent.com/u/55558050?s=40&v=4"
+            alt="avatar"
+            roundedCircle
+          />
         </Container>
       </Container>
     </>
