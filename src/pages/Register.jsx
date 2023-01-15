@@ -1,170 +1,221 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, Image } from "react-bootstrap";
-import validator from "validator";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, storage, db } from "../firebaseConfig";
+import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
-
-
 const Register = () => {
-  const [signupError, setSinupError] = useState(false);
-  const [validated, setValidated] = useState(false);
 
-  const handleSubmit = async (event) => {
+// Form inputs
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [picture, setPicture] = useState(null);
+const [formValid, setFormValid] = useState(false);
+const [errors, setErrors] = useState({});
 
-    //event.preventDefault();
-    const firstName = event.target[0].value;
-    const lastName = event.target[1].value;
-    const email = event.target[2].value;
-    const password = event.target[3].value;
-    const file = event.target[4].files[0];
-    const fullName = firstName + " " + lastName;
+ // Handle form submission
+const handleSubmit = async (event) => {
 
-    const form = event.currentTarget;
+  event.preventDefault();
 
-    try {
-       //Create a user
-      const response = await createUserWithEmailAndPassword(auth, email, password);
+  if (!formValid) {
+    return;
+  }
 
-      const storageRef = ref(storage, fullName);
-
-      const uploadTask = uploadBytesResumable(storageRef, file);
+  try {
+    // Create a user with email and password
+    const response = await createUserWithEmailAndPassword(auth, email, password);
 
 
-      uploadTask.on(
-        
-        (error) => {
-          
-          // Handle unsuccessful uploads
-          setSinupError(true);
-        },
-        () => {
-          // Handle successful uploads on complete
-          getDownloadURL(uploadTask.snapshot.ref).then( async(downloadURL) => {
-            await updateProfile(response.user, {
-              firstName,
-              lastName,
-              photoURL: downloadURL,
-            });
-            await setDoc(doc(db, "users", response.user.uid), {
-              uid: response.user.uid,
-              firstName,
-              lastName,
-              email,
-              photoURL: downloadURL,
-            });
-          });
-        }
-      );
-    } catch (signupError) {
-      setSinupError(true);
+    try{
+    // Update the user's profile
+    await updateProfile(response.user, {
+      displayName: firstName + " " + lastName,
+        photoURL: getDownloadURL(response.user)
+    });
+      //create user on firestore
+      await setDoc(doc(db, "users", response.user.uid), {
+          uid: response.user.uid,
+          displayName: response.user.displayName,
+          email: response.user.email,
+          photoURL: getDownloadURL(response),
+      });
+    } catch (error) {
+        // Handle error
+        console.log("Error creating user:", error);
     }
-
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
-
-  const [passwordError, setPasswordError] = useState("");
-  const validatePassword = (value) => {
-    if (
-      validator.isStrongPassword(value, {
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-    ) {
-      setPasswordError("This is a strong password");
-    } else {
-      setPasswordError("This is NOT a strong password");
+    // // Handle picture upload
+    // if(picture) {
+    //   const pictureRef = storage().ref().child(`user_pictures/${picture.name}`);
+    //   const snapshot = await pictureRef.put(picture);
+    //   const pictureUrl = await snapshot.ref.getDownloadURL();
+    //   await response.user.updateProfile({
+    //     photoURL: pictureUrl
+    //   });
+    // }
+    //
+    // // Save user data to Firestore
+    // const userData = {
+    //   userId: response.user.uid,
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   };
+    //   await db().doc(`users/${response.user.uid}`).set(userData);
+    //   console.log("User data saved to Firestore");
+    } catch (error) {
+       // Handle error
+      console.log(error);
     }
   };
 
-  const [emailError, setEmailError] = useState("");
-  const validateEmail = (e) => {
-    var email = e.target.value;
-    if (validator.isEmail(email)) {
-      setEmailError("Looks like a valid email");
-    } else {
-      setEmailError("This is NOT a valid email!");
-    }
-  };
+// Validate the form inputs
+const validateForm = () => {
 
-  return (
-    <Container className="regForm">
-      <Card>
-        <Card.Header className="regFormCard" as="h5">
-          <Image src="logo.png" rounded />
-          Register for Creche Connect
-        </Card.Header>
-        <Card.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="validationCustom01">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control required type="text" placeholder="First name" />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="validationCustom02">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control required type="text" placeholder="Last name" />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                required
-                type="email"
-                placeholder="Email"
-                onChange={(e) => validateEmail(e)}
-              />
-              <Form.Control.Feedback>{emailError}</Form.Control.Feedback>
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="validationCustom03">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                onChange={(e) => validatePassword(e.target.value)}
-              />
-              {passwordError === "" ? null : (
-                <Form.Control.Feedback>{passwordError}</Form.Control.Feedback>
-              )}
-              <Form.Text className="text-muted">
-                Your password must be minimum 8 characters long, contain
-                letters, numbers, special characters, upper and lower cases.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="validationCustom04">
-              <Form.Label>Add avatar</Form.Label>
-              <Form.Control type="file" required name="file" />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Sign Up
-            </Button>
-            {signupError && (
-              <span>Some details were incorrect. Try again.</span>
-            )}
-          </Form>
-        </Card.Body>
-        <Card.Footer className="text-muted">
-          Are you already registered?{" "}
-          <a href="/Login">
-            <b>Login</b>
-          </a>
-        </Card.Footer>
-      </Card>
-    </Container>
-  );
-}
+ let valid = true;
+ let errors = {};
+
+ if (!firstName || firstName.length < 2) {
+   errors.firstName = <Form.Text className="text-muted">First name must be at least 2 characters</Form.Text>;
+   valid = false;
+ }
+
+ if (!lastName || lastName.length < 2) {
+   errors.lastName = <Form.Text className="text-muted">Last name must be at least 2 characters</Form.Text>;
+   valid = false;
+ }
+
+ if (!email) {
+   errors.email = <Form.Text className="text-muted">Email address is required</Form.Text>;
+   valid = false;
+
+ } else if (!/\S+@\S+\.\S+/.test(email)) {
+   errors.email = <Form.Text className="text-muted">Invalid email address</Form.Text>;;
+   valid = false;
+ }
+
+ if (!picture) {
+   errors.picture = <Form.Text className="text-muted">Please upload a profile picture</Form.Text>;
+   valid = false;
+ } 
+
+ // Password validation
+ if (!password) {
+   errors.password = <Form.Text className="text-muted">Password is required</Form.Text>;
+   valid = false;
+
+ } else if (password.length < 8) {
+   errors.password = <Form.Text className="text-muted">Your password must be minimum 8 characters long</Form.Text>;
+   valid = false;
+ } else if (!/[a-z]/.test(password)) {
+   errors.password = <Form.Text className="text-muted">Password must contain at least one lowercase letter</Form.Text>;
+   valid = false;
+ } else if (!/[A-Z]/.test(password)) {
+   errors.password = <Form.Text className="text-muted">Password must contain at least one uppercase letter</Form.Text>;
+   valid = false;
+ } else if (!/\d/.test(password)) {
+   errors.password = <Form.Text className="text-muted">Password must contain at least one number</Form.Text>;
+   valid = false;
+ } else if (!/[!@#\$%\^&\*]/.test(password)) {
+   errors.password = <Form.Text className="text-muted">Password must contain at least one symbol</Form.Text>;
+   valid = false;
+ } 
+
+ setErrors(errors);
+ setFormValid(valid);
+ 
+};
+
+return (
+ <Container className="regForm">
+   <Card>
+     <Card.Header className="regFormCard" as="h5">
+       <Image src="logo.png" rounded />
+       Register for Creche Connect
+     </Card.Header>
+     <Card.Body>
+       <Form onSubmit={handleSubmit}>
+         <Form.Group className="mb-3" controlId="validationCustom01">
+           <Form.Label>First Name</Form.Label>
+           <Form.Control
+             type="text"
+             value={firstName}
+             onChange={(e) => setFirstName(e.target.value)}
+             onBlur={validateForm}
+             required
+           />
+             {errors.firstName && 
+             <div className="error-text">{errors.firstName}</div>}
+         </Form.Group>
+
+         <Form.Group className="mb-3" controlId="validationCustom02">
+           <Form.Label>Last Name</Form.Label>
+           <Form.Control
+             type="text"
+             value={lastName}
+             onChange={(e) => setLastName(e.target.value)}
+             onBlur={validateForm}
+             required
+           />
+             {errors.lastName &&
+             <div className="error-text">{errors.lastName}</div>}
+         </Form.Group>
+
+         <Form.Group className="mb-3" controlId="formBasicEmail">
+           <Form.Label>Email address</Form.Label>
+           <Form.Control
+             type="email" 
+             value={email} 
+             onChange={(e) => setEmail(e.target.value)} 
+             onBlur={validateForm} 
+             required
+           />
+           {errors.email && 
+           <div className="error-text">{errors.email}</div>}
+         </Form.Group>
+
+         <Form.Group className="mb-3" controlId="validationCustom03">
+           <Form.Label>Password</Form.Label>
+           <Form.Control
+             type="password" 
+             value={password} 
+             onChange={(e) => setPassword(e.target.value)} 
+             onBlur={validateForm} 
+             required
+           />
+           {errors.password && 
+           <div className="error-text">{errors.password}</div>}
+         </Form.Group>
+
+         <Form.Group className="mb-3" controlId="validationCustom04">
+           <Form.Label>Add avatar</Form.Label>
+           <Form.Control
+             type="file" 
+             onChange={(e) => setPicture(e.target.files[0])} 
+             onBlur={validateForm} 
+             required
+           />
+           {errors.picture && 
+           <div className="error-text">{errors.picture}</div>}
+         </Form.Group>
+
+         <Button variant="primary" type="submit" disabled={!formValid}>
+           Sign Up
+         </Button>
+       </Form>
+     </Card.Body>
+     <Card.Footer className="text-muted">
+       Are you already registered?{" "}
+       <a href="/Login">
+         <b>Login</b>
+       </a>
+     </Card.Footer>
+   </Card>
+ </Container>
+);
+
+};
 
 export default Register;
