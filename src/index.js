@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 // import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { AuthDetails } from './components/AuthDetails';
+import { AuthInfo } from './components/AuthDetails';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthDetails>
+  <AuthInfo>
     <React.StrictMode>
     <App />
   </React.StrictMode>
-  </AuthDetails>
+  </AuthInfo>
   
 );
 
