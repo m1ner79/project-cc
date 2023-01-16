@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
