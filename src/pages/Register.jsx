@@ -5,10 +5,10 @@ import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { LinkContainer } from 'react-router-bootstrap';
-import { useNavigation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Register = () => {
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   // Form inputs
   const [firstName, setFirstName] = useState("");
@@ -246,8 +246,7 @@ const Register = () => {
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Are you already registered?
-          <LinkContainer to="/login"><b>Login</b></LinkContainer>  
+          Are you already registered? <Link to="/login"><b>Login</b></Link>  
         </Card.Footer>
       </Card>
     </Container>

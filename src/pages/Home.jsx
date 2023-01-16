@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import MainMenu from "../components/MainMenu";
 import Navigation from "../components/Navigation";
 import Welcome from "../components/Welcome";

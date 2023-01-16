@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Form, Button, Container, Card, Image } from "react-bootstrap";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -36,7 +36,7 @@ const Login = () => {
               <Form.Control
                 required
                 type="email"
-                placeholder="Email"
+                placeholder="email"
               />
               <Form.Control.Feedback>that is incorrect</Form.Control.Feedback>
               <Form.Text className="text-muted">
@@ -62,7 +62,7 @@ const Login = () => {
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Are you not registered? <Link to="/login"><b>Register</b></Link>
+          Are you not registered? <Link to="/register"><b>Register</b></Link>
         </Card.Footer>
       </Card>
     </Container>
