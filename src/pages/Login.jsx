@@ -1,47 +1,26 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, Image } from "react-bootstrap";
-//import validator from "validator";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const [validated, setValidated] = useState(false);
+  const navigate = useNavigate();
 
-  // const handleSubmit = (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const email = event.target[0].value;
+    const password = event.target[1].value;
 
-  //   setValidated(true);
-  // };
-
-  // const [emailError, setEmailError] = useState("");
-  // const validateEmail = (e) => {
-  //   var email = e.target.value;
-  //   if (validator.isEmail(email)) {
-  //     setEmailError("Looks like a valid email");
-  //   } else {
-  //     setEmailError("This is NOT a valid email!");
-  //   }
-  // };
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const signIn = (e) =>{
-
-    e.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      console.log(userCredential);
-    }).catch((error) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+        navigate("/");
+        
+    } catch (error) {
+      // Handle error
       console.log(error);
-    })
-
-  }
+    }
+  };
 
   return (
     <Container className="form login">
@@ -51,15 +30,13 @@ const Login = () => {
           Login
         </Card.Header>
         <Card.Body>
-          <Form noValidate onSubmit={signIn}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
                 type="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e)}
               />
               <Form.Control.Feedback>that is incorrect</Form.Control.Feedback>
               <Form.Text className="text-muted">
@@ -68,11 +45,9 @@ const Login = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="validationCustom03">
               <Form.Label>Password</Form.Label>
-              <Form.Control 
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => setPassword(e)}
+              <Form.Control
+                type="password"
+                placeholder="password"
               />
               <Form.Control.Feedback>Looks ok!</Form.Control.Feedback>
 
@@ -87,11 +62,11 @@ const Login = () => {
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Are you not registered? <b>Register</b>
+          Are you not registered? <Link to="/login"><b>Register</b></Link>
         </Card.Footer>
       </Card>
     </Container>
   );
-}
+};
 
 export default Login;
