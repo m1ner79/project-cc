@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export const AuthDetails = createContext();
 
-export const AuthInfo = ({ children }) => {
+export const AuthInfo = ({children}) => {
   const [loggedUser, setLoggedUser] = useState(null);
 
   useEffect(() => {
@@ -20,8 +20,8 @@ export const AuthInfo = ({ children }) => {
   }, []);
 
   return (
-    <AuthInfo value={{ loggedUser }}>
+    <AuthDetails.Provider value={{ loggedUser }}>
       {children}
-    </AuthInfo>
+    </AuthDetails.Provider>
   );
 };

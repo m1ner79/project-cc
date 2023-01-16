@@ -8,6 +8,7 @@ import { auth } from "../firebase";
 const Navigation = () => {
 
   const {loggedUser} = useContext(AuthDetails);
+  console.log({loggedUser});
 
   return (
     <Navbar className='navigation' collapseOnSelect expand="lg" bg="dark" variant="dark">
