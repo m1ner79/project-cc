@@ -6,7 +6,6 @@ import "./customStyle.scss";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Connect from "./pages/Connect";
 import { AuthDetails} from "./components/AuthDetails";
 
 function App() {
@@ -15,11 +14,11 @@ function App() {
   
   const AuthRoute = ({children}) =>{
       if(loggedUser){
-        return <Route>{children}</Route>
+        return children;
       }else{
-        return <Navigate to="/login" />
+        return <Navigate to="/login" />;
       }
-  }
+  };
 
   return (
       <BrowserRouter>
