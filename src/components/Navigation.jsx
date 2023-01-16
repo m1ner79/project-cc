@@ -1,8 +1,14 @@
 
-import {Navbar,Nav, Container, Button} from 'react-bootstrap';
-import Image from 'react-bootstrap/Image'
+import {Navbar,Nav, Container, Button, Image} from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { signOut } from 'firebase/auth';
+import {AuthDetails} from './AuthDetails';
+import { auth } from "../firebase";
 
-function Navigation() {
+const Navigation = () => {
+
+  const {loggedUser} = useContext(AuthDetails);
+
   return (
     <Navbar className='navigation' collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
@@ -13,9 +19,9 @@ function Navigation() {
             <Nav className="me-auto">
             </Nav>
             <Nav>
-            <Button classname='logoutButton' variant="light">Logout</Button>{' '}
+            <Button classname='logoutButton' variant="light" onClick={()=>signOut(auth)}>Logout</Button>{' '}
             </Nav>
-            <Image className='avatar' src="https://avatars.githubusercontent.com/u/55558050?s=40&v=4"
+            <Image className='avatar' src={loggedUser.photoURL}
                   alt="avatar" roundedCircle/>
           </Navbar.Collapse>
         </Container>
