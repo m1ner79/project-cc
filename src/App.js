@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./customStyle.scss";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import Home from "./pages/Home";
-// import Connect from "./pages/Connect";
+import Home from "./pages/Home";
+import Connect from "./pages/Connect";
+import { AuthDetails} from "./components/AuthDetails";
 
 function App() {
+
+  const {loggedUser} = useContext(AuthDetails);
+  
+  const AuthRoute = ({children}) =>{
+      if(loggedUser){
+        return <Route>{children}</Route>
+      }else{
+        return <Navigate to="/login" />
+      }
+  }
+
   return (
-    <div className="App">
-      <Register />
-    </div>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/">
+        <Route
+            index
+            element={
+              <AuthRoute>
+                <Home />
+              </AuthRoute>
+            }
+          />
+          <Route path="login" element={<Login/>}/>
+          <Route path="register" element={<Register/>}/>
+        </Route>
+      </Routes>
+      </BrowserRouter>
   );
 }
 
