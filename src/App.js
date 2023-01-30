@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import { AuthDetails} from "./components/AuthDetails";
+import Connect from "./pages/Connect";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="login" element={<Login/>}/>
           <Route path="register" element={<Register/>}/>
+          <Route path="connect" element={<Connect/>}/>
         </Route>
       </Routes>
       </BrowserRouter>
