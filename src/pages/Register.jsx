@@ -58,7 +58,7 @@ const Register = () => {
           photoURL: profileDownloadURL,
         });
 
-        await setDoc(doc(db, "users", response.user.uid), {});
+        await setDoc(doc(db, "userMessages", response.user.uid), {});
         
         navigate("/");
 
