@@ -4,13 +4,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthInfo } from './components/AuthDetails';
+import {MessageInfo} from "./components/MessageDetails";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthInfo>
+      <MessageInfo>
     <React.StrictMode>
     <App />
   </React.StrictMode>
+      </MessageInfo>
   </AuthInfo>
   
 );
