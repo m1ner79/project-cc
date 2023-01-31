@@ -1,5 +1,5 @@
 import { Container, Button } from "react-bootstrap";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MainMenu() {
   return (
@@ -8,9 +8,11 @@ function MainMenu() {
         <Button className="addChildButton" variant="primary" size="lg">
           Add a child
         </Button>
-        <Link to="/connect"><Button className="connectButton" variant="primary" size="lg">
-          Connect
-        </Button></Link> 
+        <Link to="/connect">
+          <Button className="connectButton" variant="primary" size="lg">
+            Connect
+          </Button>
+        </Link>
       </Container>
     </Container>
   );

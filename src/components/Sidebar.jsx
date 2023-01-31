@@ -1,17 +1,17 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
-import Search from './Search';
-import Chats from './Chats';
+import React from "react";
+import { Container } from "react-bootstrap";
+import Search from "./Search";
+import Chats from "./Chats";
 
 const Sidebar = () => {
   return (
     <>
-    <Container className="sidebar">
-      <br></br>
-      <Search />
-      <br></br>
-      <Chats />
-    </Container>
+      <Container className="sidebar">
+        <br></br>
+        <Search />
+        <br></br>
+        <Chats />
+      </Container>
     </>
   );
 };

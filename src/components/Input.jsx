@@ -6,7 +6,7 @@ import { AuthDetails } from "./AuthDetails";
 import { MessageDetails } from "./MessageDetails";
 import { db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import {
   doc,
   Timestamp,

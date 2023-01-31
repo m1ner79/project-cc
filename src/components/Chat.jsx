@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Container, Button, ButtonGroup } from "react-bootstrap";
 import {
   BsFillCameraReelsFill,
@@ -7,7 +7,7 @@ import {
 } from "react-icons/bs";
 import Messages from "./Messages";
 import Input from "./Input";
-import {MessageDetails} from "./MessageDetails";
+import { MessageDetails } from "./MessageDetails";
 
 const Chat = () => {
   const { data } = useContext(MessageDetails);
@@ -31,12 +31,12 @@ const Chat = () => {
           </ButtonGroup>
         </Container>
       </Container>
-        <br></br>
-        <Messages />
-        <br></br>
-        <Input />
+      <br></br>
+      <Messages />
+      <br></br>
+      <Input />
     </Container>
   );
-}
+};
 
 export default Chat;

@@ -28,11 +28,11 @@ const Navigation = () => {
             </Form.Text>
             <Image
               className="avatar"
-              src={loggedUser.photoURL} //pic is not appearing,double check
+              src={loggedUser.photoURLS} //pic is not appearing,double check
               alt="avatar"
               roundedCircle
             />
-             <Button
+            <Button
               className="logoutButton"
               variant="light"
               onClick={() => signOut(auth)}
