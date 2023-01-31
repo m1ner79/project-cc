@@ -13,9 +13,9 @@ const Chats = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       const unsub = onSnapshot(
-        doc(db, "loggedUserMessages", loggedUser.uid),
+        doc(db, "userMessages", loggedUser.uid),
         (doc) => {
-          setMessages(doc.data());
+          setMessages(doc.data() || []);
         }
       );
 
@@ -32,12 +32,12 @@ const Chats = () => {
   };
 
   return (
-    <Container className="chats">
+    <Container className="messages">
       {Object.entries(messages)
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((mess) => (
           <Container
-            className="userChats"
+            className="loggedUserMessages"
             key={mess[0]}
             onClick={handleSelect(mess[1].userInfo)}
           >

@@ -11,7 +11,7 @@ const Messages = () => {
 
     useEffect(() => {
         const unsub = onSnapshot(
-            doc(db, "messages", data.messageId),
+            doc(db, "allMessages", data.messageId),
             (doc) => {
                 doc.exists() && setMessages(doc.data().messages);
             })

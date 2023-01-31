@@ -57,7 +57,7 @@ const Search = () => {
         });
       }
       //create person messages
-      await updateDoc(doc(db, "loggedUserMessages", loggedUser.uid), {
+      await updateDoc(doc(db, "userMessages", loggedUser.uid), {
         [loggedUserRef + ".userInfo"]: {
           uid: user.uid,
           displayName: user.displayName,
@@ -66,7 +66,7 @@ const Search = () => {
         [loggedUserRef + ".date"]: serverTimestamp(),
       });
 
-      await updateDoc(doc(db, "loggedUserMessages", user.uid), {
+      await updateDoc(doc(db, "userMessages", user.uid), {
         [loggedUserRef + ".userInfo"]: {
           uid: loggedUser.uid,
           displayName: loggedUser.displayName,

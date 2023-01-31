@@ -30,7 +30,7 @@ const Input = () => {
       const uploadTask = uploadBytesResumable(storageRef, image);
 
       uploadTask.on(
-        (err) => {
+        (_err) => {
           //TODO:Handle Error
           setErr(true);
         },
@@ -59,14 +59,14 @@ const Input = () => {
       });
     }
 
-    await updateDoc(doc(db, "loggedUserMessages", loggedUser.uid), {
+    await updateDoc(doc(db, "userMessages", loggedUser.uid), {
       [data.messageId + ".lastMessage"]: {
         text,
       },
       [data.messageId + ".date"]: serverTimestamp(),
     });
 
-    await updateDoc(doc(db, "loggedUserMessages", data.user.uid), {
+    await updateDoc(doc(db, "userMessages", data.user.uid), {
       [data.messageId + ".lastMessage"]: {
         text,
       },
