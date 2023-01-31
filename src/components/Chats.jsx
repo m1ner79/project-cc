@@ -1,35 +1,60 @@
-import React from 'react'
-import { Container, Image } from 'react-bootstrap'
+import React, { useContext, useEffect, useState } from "react";
+import { Container, Image } from "react-bootstrap";
+import { AuthDetails } from "./AuthDetails";
+import { db } from "../firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+import { MessageDetails } from "./MessageDetails";
 
-function Chats() {
+const Chats = () => {
+  const { loggedUser } = useContext(AuthDetails);
+  const { dispatch } = useContext(MessageDetails);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      const unsub = onSnapshot(
+        doc(db, "loggedUserMessages", loggedUser.uid),
+        (doc) => {
+          setMessages(doc.data());
+        }
+      );
+
+      return () => {
+        unsub();
+      };
+    };
+    loggedUser.uid && fetchMessages();
+  }, [loggedUser.uid]);
+  console.log(messages);
+
+  const handleSelect = (u) => {
+    dispatch({ type: "CHANGE_USER", payload: u });
+  };
+
   return (
-    <Container className='chats'>
-        <Container className='userChats'>
-        <Image className='avatar' src="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-6.jpg"
-                  alt="avatar" roundedCircle/>
-                  <Container className='userInfo'>
-                    <span>Ted</span>
-                    <p>Hello!</p>
-                  </Container>
-        </Container>
-        <Container className='userChats'>
-        <Image className='avatar' src="https://www.delltechnologies.com/uploads/2021/07/s_6F9FA8C635E5B49A4AA9474CB76D1146BC1F6408CE5EEC320713FFF4758F98B5_1569007594455_003454-300x300.jpg"
-                  alt="avatar" roundedCircle/>
-                  <Container className='userInfo'>
-                    <span>Aine</span>
-                    <p>hi!</p>
-                  </Container>
-        </Container>
-        <Container className='userChats'>
-        <Image className='avatar' src="data:image/jpeg;base64,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"
-                  alt="avatar" roundedCircle/>
-                  <Container className='userInfo'>
-                    <span>Bolo</span>
-                    <p>Hello!</p>
-                  </Container>
-        </Container>
+    <Container className="chats">
+      {Object.entries(messages)
+        ?.sort((a, b) => b[1].date - a[1].date)
+        .map((mess) => (
+          <Container
+            className="userChats"
+            key={mess[0]}
+            onClick={handleSelect(mess[1].userInfo)}
+          >
+            <Image
+              className="avatar"
+              src={mess[1].userInfo.photoURL}
+              alt="avatar"
+              roundedCircle
+            />
+            <Container className="userInfo">
+              <span>{mess[1].userInfo.displayName}</span>
+              <p>{mess[1].lastMessage?.text}</p>
+            </Container>
+          </Container>
+        ))}
     </Container>
-  )
-}
+  );
+};
 
-export default Chats
+export default Chats;

@@ -1,27 +1,40 @@
-import React from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import { Container, Image } from "react-bootstrap";
+import {AuthDetails} from "./AuthDetails";
+import {MessageDetails} from "./MessageDetails";
 
-function Message() {
+const Message = ({message}) => {
+
+  const { loggedUser } = useContext(AuthDetails);
+  const { data } = useContext(MessageDetails);
+  console.log(message);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
+
   return (
     <>
-      <Container className="message loggedUser">
+      <Container ref={ref} className={'message ${message.senderID === loggedUser.uid && "loggedUser"}'}>
         <Container className="messageDetails">
           <Image
             className="avatar"
-            src="https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-6.jpg"
+            src= {message.senderID === loggedUser.uid ? loggedUser.photoURL : data.user.photoURL}
             alt="avatar"
             roundedCircle
           />
-          <span>time/date</span>
+          <span>Last message:</span>
         </Container>
         <Container className="messageSubject">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          <Image
-            className="avatar"
-            src="https://avatars.githubusercontent.com/u/55558050?s=40&v=4"
-            alt="avatar"
-            roundedCircle
-          />
+          <p>{message.text}</p>
+          {message.image && <Image
+              className="avatar"
+              src={message.image}
+              alt="avatar"
+              roundedCircle
+          />}
         </Container>
       </Container>
     </>

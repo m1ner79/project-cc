@@ -53,7 +53,7 @@ const Search = () => {
       if (!response.exists()) {
         //create a chat in allMessages collection
         await setDoc(doc(db, "allMessages", loggedUserRef), {
-          chatDetails: [],
+          messageDetails: [],
         });
       }
       //create person messages
@@ -75,7 +75,7 @@ const Search = () => {
         [loggedUserRef + ".date"]: serverTimestamp(),
       });
     } catch (err) {
-      setErr(err);
+      setErr(true);
     }
 
     setUser(null);

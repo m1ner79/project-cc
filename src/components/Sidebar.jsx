@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import Search from './Search';
 import Chats from './Chats';
 
-function Sidebar() {
+const Sidebar = () => {
   return (
     <>
     <Container className="sidebar">
@@ -13,7 +13,7 @@ function Sidebar() {
       <Chats />
     </Container>
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
