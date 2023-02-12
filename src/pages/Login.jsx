@@ -1,4 +1,4 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import { Form, Button, Container, Card, Image } from "react-bootstrap";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,7 +19,7 @@ const Login = () => {
         
     } catch (error) {
       // Handle error
-      console.log(error);
+      setError(true);
     }
   };
 
@@ -59,6 +60,7 @@ const Login = () => {
             <Button variant="primary" type="submit">
               Sign In
             </Button>
+            {error && <Form.Text className="text-muted">Something went wrong</Form.Text>}
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">

@@ -17,6 +17,7 @@ const Register = () => {
   const [picture, setPicture] = useState(null);
   const [formValid, setFormValid] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   // Handle form submission
   const handleSubmit = async (event) => {
