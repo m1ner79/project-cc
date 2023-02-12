@@ -94,10 +94,10 @@ const Input = () => {
           style={{ display: "none" }}
           onChange={(event) => setImage(event.target.files[0])}
         />
-        <Form.Label>
-          <BiImageAdd />
-        </Form.Label>
-        <Form.Control type="file" style={{ display: "none" }} />
+        {/*<Form.Label>*/}
+        {/*  <BiImageAdd />*/}
+        {/*</Form.Label>*/}
+        {/*<Form.Control type="file" style={{ display: "none" }} />*/}
       </Form.Group>
       <Button variant="custSend" onClick={handleSend}>
         <BiSend />
