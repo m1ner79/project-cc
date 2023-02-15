@@ -42,6 +42,8 @@ const Message = ({ message }) => {
               className="avatar"
               src={message.image}
               alt="avatar"
+              width="30"
+              height="30"
               roundedCircle
             />
           )}

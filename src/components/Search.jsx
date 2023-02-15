@@ -101,6 +101,8 @@ const Search = () => {
             className="avatar"
             src={user.photoURL}
             alt="avatar"
+            width="30"
+            height="30"
             roundedCircle
           />
           <Container className="userMessagesInfo">

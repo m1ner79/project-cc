@@ -11,14 +11,20 @@ const Messages = () => {
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "allMessages", data.messageId), (doc) => {
-      doc.exists() && setMessages(doc.data().messages);
+      if (doc.exists()){
+
+        setMessages(doc.data().messages);
+      } else {
+        console.log("No such document!");
+      }
     });
     return () => unsub();
   }, [data.messageId]);
 
   return (
     <Container className="messages">
-      {messages.map((message) => (
+      {messages && 
+        messages.map((message) => (
         <Message message={message} key={message.id} />
       ))}
     </Container>

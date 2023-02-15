@@ -23,22 +23,28 @@ const Navigation = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav>
-            <Form.Text className="text-muted">
-              {loggedUser.displayName}
-            </Form.Text>
-            <Image
-              className="avatar"
-              src={loggedUser.photoURLS} //pic is not appearing,double check
-              alt="avatar"
-              roundedCircle
-            />
-            <Button
-              className="logoutButton"
-              variant="light"
-              onClick={() => signOut(auth)}
-            >
-              Logout
-            </Button>
+            {loggedUser && (
+              <>
+                <Form.Text className="text-muted">
+                  {loggedUser.displayName}
+                </Form.Text>
+                <Image
+                  className="avatar"
+                  src={loggedUser.photoURLS} //pic is not appearing,double check
+                  alt="avatar"
+                  width="30"
+                  height="30"
+                  roundedCircle
+                />
+                <Button
+                  className="logoutButton"
+                  variant="light"
+                  onClick={() => signOut(auth)}
+                >
+                  Logout
+                </Button>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
