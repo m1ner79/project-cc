@@ -19,6 +19,10 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // Convert the first letter to uppercase
+  const capitalizedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+  const capitalizedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
   // Handle form submission
   const handleSubmit = async (event) => {
     // prevent page refresh on form submit
@@ -49,7 +53,7 @@ const Register = () => {
       try {
         // Update the user's profile
         await updateProfile(response.user, {
-          displayName: firstName + " " + lastName,
+          displayName: capitalizedFirstName + " " + capitalizedLastName,
         });
         //create user on firestore
         await setDoc(doc(db, "users", response.user.uid), {

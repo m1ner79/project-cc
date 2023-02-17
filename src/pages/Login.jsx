@@ -60,8 +60,8 @@ const Login = () => {
             <Button variant="primary" type="submit">
               Sign In
             </Button>
-            {error && <Form.Text className="text-muted">Something went wrong</Form.Text>}
           </Form>
+          {error && <div className="alert alert-danger" role="alert"><Form.Text className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text> </div> }
         </Card.Body>
         <Card.Footer className="text-muted">
           Are you not registered? <Link to="/register"><b>Register</b></Link>
