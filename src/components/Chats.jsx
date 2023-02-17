@@ -39,12 +39,11 @@ const Chats = () => {
           <Container
             className="loggedUserMessages"
             key={mess[0]}
-            onClick={handleSelect(mess[1].userInfo)}
+            onClick={() => handleSelect(mess[1].userInfo)}
           >
             <Image
               className="avatar"
               src={mess[1].userInfo.photoURL}
-              alt="avatar"
               width="30"
               height="30"
               roundedCircle
@@ -52,6 +51,8 @@ const Chats = () => {
             <Container className="userInfo">
               <span>{mess[1].userInfo.displayName}</span>
               <p>{mess[1].lastMessage?.text}</p>
+              {console.log(mess[1].userInfo.displayName)}
+              {console.log(mess[1].lastMessage?.text)}
             </Container>
           </Container>
         ))}

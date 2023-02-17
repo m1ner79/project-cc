@@ -94,7 +94,7 @@ const Search = () => {
           value={userName}
         />
       </Container>
-      {err && <Form.Text className="text-muted">Person not found</Form.Text>}
+      {err && <Form.Text className="text-muted"><b>Person not found</b></Form.Text>}
       {user && (
         <Container className="userMessages" onClick={handleMessaging}>
           <Image

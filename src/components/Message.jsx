@@ -18,11 +18,10 @@ const Message = ({ message }) => {
     <>
       <Container
         ref={ref}
-        className={
-          'message ${message.senderID === loggedUser.uid && "loggedUser"}'
+        className={'message ${message.senderID === loggedUser.uid && "loggedUser"}'
         }
       >
-        <Container className="messageDetails">
+        {/* <Container className="messageDetails">
           <Image
             className="avatar"
             src={
@@ -34,17 +33,14 @@ const Message = ({ message }) => {
             roundedCircle
           />
           <span>Last message:</span>
-        </Container>
+        </Container> */}
         <Container className="messageSubject">
           <p>{message.text}</p>
-          {message.image && (
+          {message.img && (
             <Image
-              className="avatar"
-              src={message.image}
-              alt="avatar"
-              width="30"
-              height="30"
-              roundedCircle
+              src={message.img}
+              alt=""
+        
             />
           )}
         </Container>
