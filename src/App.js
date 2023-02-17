@@ -22,23 +22,34 @@ function App() {
   };
 
   return (
-      <BrowserRouter>
-      <Routes>
-        <Route path="/">
+    <BrowserRouter>
+    <Routes>
+      <Route path="/">
         <Route
+          index
+          element={
+            <AuthRoute>
+              <Home />
+            </AuthRoute>
+          }
+        />
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+      </Route>
+
+      <Route path="/connect">
+          <Route 
             index
             element={
               <AuthRoute>
-                <Home />
+                <Connect />
               </AuthRoute>
-            }
+            } 
           />
-          <Route path="login" element={<Login/>}/>
-          <Route path="register" element={<Register/>}/>
-          <Route path="connect" element={<Connect/>}/>
-        </Route>
-      </Routes>
-      </BrowserRouter>
+      </Route>
+      
+    </Routes>
+    </BrowserRouter>
   );
 }
 
