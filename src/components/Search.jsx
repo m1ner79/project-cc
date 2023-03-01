@@ -26,7 +26,7 @@ const Search = () => {
       collection(db, "users"),
       where("displayName", "==", userName)
     );
-
+      console.log(q);
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -106,7 +106,7 @@ const Search = () => {
             roundedCircle
           />
           <Container className="userMessagesInfo">
-            <span>{user.displayName}</span>
+            <span>{user.displayName.toUpperCase()}</span>
           </Container>
         </Container>
       )}

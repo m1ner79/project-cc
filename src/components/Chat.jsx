@@ -16,20 +16,6 @@ const Chat = () => {
       <br></br>
       <Container className="chatDetails">
         <span>{data.user?.displayName}</span>
-        {/* future proofing */}
-        <Container className="icons">
-          <ButtonGroup className="groupIcons" size="sm">
-            <Button variant="custOpt">
-              <BsFillCameraReelsFill />
-            </Button>
-            <Button variant="custOpt">
-              <BsFillTelephoneFill />
-            </Button>
-            <Button variant="custOpt">
-              <BsThreeDotsVertical />
-            </Button>
-          </ButtonGroup>
-        </Container>
       </Container>
       <br></br>
       <Messages />

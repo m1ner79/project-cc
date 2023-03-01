@@ -26,7 +26,7 @@ const Navigation = () => {
             {loggedUser && (
               <>
                 <Form.Text className="text-muted">
-                  {loggedUser.displayName}
+                  {loggedUser.displayName.toUpperCase()}
                 </Form.Text>
                 <Image
                   className="avatar"
