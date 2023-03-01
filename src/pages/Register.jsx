@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Card, Image } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Card,
+  Image,
+  FloatingLabel,
+} from "react-bootstrap";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -15,13 +22,14 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [picture, setPicture] = useState(null);
+  const [userType, setUserType] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // Convert the first letter to uppercase
-  const capitalizedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
-  const capitalizedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+  // Convert to lowercase
+  const firstNameLC = firstName.toLowerCase();
+  const lastNameLC = lastName.toLowerCase();
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -41,19 +49,27 @@ const Register = () => {
       );
       // get timestamp
       const date = new Date().getTime();
-      // create storage reference
-      const storageRef = ref(storage, `${email + picture.name + date}`);
-      // upload picture
-      const uploadResult = await uploadBytesResumable(storageRef, picture);
-      // get download URL for the picture
-      const profileDownloadURL = await getDownloadURL(
-        uploadResult.metadata.ref
-      );
+
+      let profileDownloadURL = null;
+
+      // if the user has uploaded a picture
+      if (picture) {
+        // create storage reference
+        const storageRef = ref(storage, `${email + picture.name + date}`);
+        // upload picture
+        const uploadResult = await uploadBytesResumable(storageRef, picture);
+        // get download URL for the picture
+        profileDownloadURL = await getDownloadURL(
+          uploadResult.metadata.ref);
+      } else {
+        // set default avatar URL
+        profileDownloadURL = "public/default-avatar.png";
+      }
 
       try {
         // Update the user's profile
         await updateProfile(response.user, {
-          displayName: capitalizedFirstName + " " + capitalizedLastName,
+          displayName: firstNameLC + " " + lastNameLC,
         });
         //create user on firestore
         await setDoc(doc(db, "users", response.user.uid), {
@@ -61,12 +77,12 @@ const Register = () => {
           displayName: response.user.displayName,
           email: response.user.email,
           photoURL: profileDownloadURL,
+          userType: userType,
         });
 
         await setDoc(doc(db, "userMessages", response.user.uid), {});
-        
-        navigate("/");
 
+        navigate("/");
       } catch (error) {
         // Handle error
         console.log("Error creating user:", error);
@@ -112,11 +128,9 @@ const Register = () => {
       valid = false;
     }
 
-    if (!picture) {
-      errors.picture = (
-        <Form.Text className="text-muted">
-          Please upload a profile picture
-        </Form.Text>
+    if (!userType) {
+      errors.userType = (
+        <Form.Text className="text-muted">User type is required</Form.Text>
       );
       valid = false;
     }
@@ -224,6 +238,7 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={validateForm}
+                placeholder="Your password must be minimum 8 characters long, contain letters, numbers, special characters, upper and lower cases."
                 required
               />
               {errors.password && (
@@ -237,20 +252,41 @@ const Register = () => {
                 type="file"
                 onChange={(e) => setPicture(e.target.files[0])}
                 onBlur={validateForm}
-                required
               />
               {errors.picture && (
                 <div className="error-text">{errors.picture}</div>
               )}
             </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={!formValid}>
+            <Form.Group controlId="userType">
+              <Form.Label>User Type</Form.Label>
+              <Form.Control
+                as="select"
+                value={userType}
+                onBlur={validateForm}
+                required
+                onChange={(e) => setUserType(e.target.value)}
+              >
+                <option value="">Select User Type</option>
+                <option value="manager">Manager</option>
+                <option value="staff">Staff</option>
+                <option value="parent">Parent</option>
+              </Form.Control>
+              {errors.userType && (
+                <div className="error-text">{errors.userType}</div>
+              )}
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
               Sign Up
             </Button>
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Are you already registered? <Link to="/login"><b>Login</b></Link>  
+          Are you already registered?{" "}
+          <Link to="/login">
+            <b>Login</b>
+          </Link>
         </Card.Footer>
       </Card>
     </Container>
