@@ -27,9 +27,6 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // Convert to lowercase
-  const firstNameLC = firstName.toLowerCase();
-  const lastNameLC = lastName.toLowerCase();
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -69,7 +66,7 @@ const Register = () => {
       try {
         // Update the user's profile
         await updateProfile(response.user, {
-          displayName: firstNameLC + " " + lastNameLC,
+          displayName: firstName + " " + lastName,
         });
         //create user on firestore
         await setDoc(doc(db, "users", response.user.uid), {

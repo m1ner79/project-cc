@@ -10,7 +10,7 @@ function Connect() {
     <>
     <Navigation />
       <Container className="connect">
-        <div className="wrapper">
+        <Container className="wrapper">
           <Container className="connectArea">
             <Sidebar />
             <Chat />
@@ -20,7 +20,7 @@ function Connect() {
               Back to Main Menu
             </Button>
           </Link>
-        </div>
+        </Container>
       </Container>
     </>
   );
