@@ -1,7 +1,31 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
 .chat-form {
   display: flex;
   align-items: center;
-  
+
   input {
     flex: 1;
     padding: 0.5rem;
@@ -23,11 +47,11 @@
 
 
 .regForm {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .login {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .navigation {
@@ -39,14 +63,15 @@
 }
 
 .home {
-    margin-top: 10px;
-    h1 {
-        color: #F4900C;
-    }
+  margin-top: 10px;
+
+  h1 {
+    color: #F4900C;
+  }
 }
 
 .mainmenu {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .connect {
@@ -55,192 +80,228 @@
   justify-content: center;
   height: 100vh;
 
-  .connectArea {
-    background-color: #8dafce;
-    border: 1px solid #212529;
-    border-radius: 10px;
-    width: 70%;
-    height: 80%;
+  .wrapper {
     display: flex;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
 
-    .sidebar {
-      flex: 1;
-      position: relative;
-      border-right: 1px solid #212529;
-      background-color: #009fff;
 
-      .search {
-        .searchInput {
+    .connectButton {
+      margin-top: 20px;
+    }
+
+    .connectArea {
+      background-color: #8dafce;
+      border: 1px solid #212529;
+      border-radius: 10px;
+      width: 70%;
+      height: 80%;
+      display: flex;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      overflow: hidden;
+
+      @include tablet {
+        width: 90%;
+      }
+
+      @include laptop {
+        width: 90%;
+      }
+
+      @include mobile {
+        width: 90%;
+      }
+
+      @include desktop {
+        width: 100%;
+      }
+
+      .sidebar {
+        flex: 1;
+        position: relative;
+        border-right: 1px solid #212529;
+        background-color: #009fff;
+
+        .search {
+
+          .searchInput {
+            height: 50px;
+            border-bottom: 2px solid white;
+
+            .inputSearch {
+              background-color: transparent;
+              border: none;
+              cursor: pointer;
+              color: white;
+
+              &::placeholder {
+                color: white;
+              }
+            }
+          }
+        }
+
+        .loggedUserMessages {
+          padding: 10px;
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          gap: 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #8dafce;
+          }
+
+          .avatar {
+            width: 30px;
+          }
+
+          .userInfo {
+            // align-items: center;
+            // gap: 10px;
+            // color: #273c4d;
+            // cursor: pointer;
+
+            span {
+              font-size: large;
+              font-weight: bolder;
+            }
+
+            p {
+              font-size: smaller;
+              color: white;
+            }
+          }
+        }
+      }
+
+      .chat {
+        flex: 2;
+        background-color: #273c4d;
+
+        .chatDetails {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           height: 50px;
           border-bottom: 2px solid white;
 
-          .inputSearch {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: white;
-
-            &::placeholder {
-              color: white;
-            }
-          }
-        }
-      }
-
-      .loggedUserMessages {
-        display: flex;
-        align-items: center;
-        border-radius: 10px;
-        gap: 10px;
-
-        &:hover {
-          background-color: #8dafce;
-        }
-
-        .avatar {
-          width: 40px;
-        }
-
-        .userInfo {
-          align-items: center;
-          gap: 10px;
-          color: #273c4d;
-          cursor: pointer;
-
           span {
-            font-size: large;
-            font-weight: bolder;
-          }
-
-          p {
-            font-size: smaller;
             color: white;
           }
-        }
-      }
-    }
 
-    .chat {
-      flex: 2;
-      background-color: #273c4d;
+          .icons {
+            display: flex;
+            justify-content: end;
 
-      .chatDetails {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 50px;
-        border-bottom: 2px solid white;
+            .groupIcons {
+              .btn-custOpt {
+                background-color: transparent;
+                border: transparent;
+                color: #009fff;
 
-        span {
-          color: white;
-        }
-
-        .icons {
-          display: flex;
-          justify-content: end;
-          .groupIcons {
-            .btn-custOpt {
-              background-color: transparent;
-              border: transparent;
-              color: #009fff;
-
-              &:hover {
-                color: #8dafce;
+                &:hover {
+                  color: #8dafce;
+                }
               }
             }
           }
         }
-      }
 
-      .messages {
-        height: 70%;
-        overflow: scroll;
+        .messages {
+          height: calc(100% - 190px);
+          padding: 10px;
+          overflow: scroll;
 
-        .message {
-          display: flex;
-          margin-bottom: 10px;
-
-          .messageDetails {
+          .message {
             display: flex;
-            flex-direction: column;
-            font-size: x-small;
-            font-weight: bolder;
+            margin-bottom: 10px;
+            gap: 20px;
 
-            span {
-              text-align: start;
-              color: white;
+            .messageDetails {
+              display: flex;
+              flex-direction: column;
+              font-size: x-small;
+              font-weight: bolder;
+
+              span {
+                text-align: start;
+                color: white;
+              }
+
+              .avatar {
+                width: 40px;
+              }
             }
-
-            .avatar {
-              width: 40px;
-            }
-          }
-
-          .messageSubject {
-            display: flex;
-            flex-direction: column;
-            max-width: 80%;
-
-            p {
-              background-color: white;
-              border-radius: 0px 10px 10px 10px;
-              max-width: max-content;
-            }
-            
-          }
-
-          &.loggedUser {
-            flex-direction: row-reverse;
 
             .messageSubject {
-              align-items: flex-end;
+              display: flex;
+              flex-direction: column;
+              max-width: 80%;
+              gap: 10px;
+
 
               p {
-                background-color: wheat;
-                border-radius: 10px 0px 10px 10px;
-                text-align: left;
+                background-color: white;
+                border-radius: 0px 10px 10px 10px;
+                max-width: max-content;
+                padding: 5px;
+              }
+
+            }
+
+            &.loggedUser {
+              flex-direction: row-reverse;
+
+              .messageSubject {
+                align-items: flex-end;
+
+                p {
+                  background-color: wheat;
+                  border-radius: 10px 0px 10px 10px;
+                }
               }
             }
           }
         }
-      }
 
-      .input {
-        height: 50px;
-        border-top: 2px solid white;
-        display: flex;
-        align-items: flex-end;
-
-        .inputText {
-          cursor: pointer;
-          border-top-right-radius: 0%;
-          border-bottom-right-radius: 0%;
-        }
-
-        .btn-custSend {
-          padding-top: -10px;
-          border-top-left-radius: 0%;
-          border-bottom-left-radius: 0%;
-          background-color: #f4900c;
-          size: 24px;
-          font-size: medium;
-
-          &:hover {
-            background-color: #b79600;
-          }
-        }
-        // having trouble to seet this container at the bottom, ask for help
-        .inputArea {
+        .input {
+          height: 50px;
+          border-top: 2px solid white;
           display: flex;
-          align-items: center;
-          background-color: white;
-          font-size: medium;
-          border-radius: 0%;
-          border: none;
-          height: 80%;
-          padding-top: 6px;
+          align-items: flex-end;
+
+          .inputText {
+            cursor: pointer;
+            border-top-right-radius: 0%;
+            border-bottom-right-radius: 0%;
+          }
+
+          .btn-custSend {
+            padding-top: -10px;
+            border-top-left-radius: 0%;
+            border-bottom-left-radius: 0%;
+            background-color: #f4900c;
+            size: 24px;
+            font-size: medium;
+
+            &:hover {
+              background-color: #b79600;
+            }
+          }
+
+          // having trouble to seet this container at the bottom, ask for help
+          .inputArea {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            font-size: medium;
+            border-radius: 0%;
+            border: none;
+            height: 80%;
+            padding-top: 6px;
+          }
         }
       }
     }
