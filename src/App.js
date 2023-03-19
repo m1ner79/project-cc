@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import { AuthDetails} from "./components/AuthDetails";
 import Connect from "./pages/Connect";
+import AddChild from "./components/AddChild";
 
 function App() {
 
@@ -43,6 +44,16 @@ function App() {
             element={
               <AuthRoute>
                 <Connect />
+              </AuthRoute>
+            } 
+          />
+      </Route>
+      <Route path="/addchild">
+          <Route 
+            index
+            element={
+              <AuthRoute>
+                <AddChild />
               </AuthRoute>
             } 
           />
