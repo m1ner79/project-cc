@@ -1,10 +1,5 @@
 import React, { useContext } from "react";
-import { Container, Button, ButtonGroup } from "react-bootstrap";
-import {
-  BsFillCameraReelsFill,
-  BsFillTelephoneFill,
-  BsThreeDotsVertical,
-} from "react-icons/bs";
+import { Container } from "react-bootstrap";
 import Messages from "./Messages";
 import Input from "./Input";
 import { MessageDetails } from "./MessageDetails";

@@ -24,7 +24,7 @@ const Search = () => {
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
-      where("displayName", "==", userName)
+      where("displayName", "==",  userName)
     );
       console.log(q);
     try {
@@ -32,7 +32,9 @@ const Search = () => {
       querySnapshot.forEach((doc) => {
         setUser(doc.data());
       });
+      setErr(false); // Reset error state if user is found
     } catch (err) {
+      setUser(null);
       setErr(true);
     }
   };
