@@ -14,6 +14,7 @@ const AddChild = () => {
   const [parentMobile, setParentMobile] = useState("");
   const [healthInfo, setHealthInfo] = useState("");
   const [observations, setObservations] = useState("");
+  const [childId, setChildId] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,6 +27,7 @@ const AddChild = () => {
       parentMobile,
       healthInfo,
       observations,
+      childId,
     };
     try {
       const docRef = await addDoc(collection(db, "children"), child);
@@ -38,6 +40,7 @@ const AddChild = () => {
       setParentMobile("");
       setHealthInfo("");
       setObservations("");
+      setChildId(docRef.id);
     } catch (error) {
       console.error("Error adding child: ", error);
     }

@@ -10,7 +10,7 @@ function Welcome() {
       <Container>
       <Row>
           <Col md={{ span: 6, offset: 3 }}>
-            <h1>Welcome {loggedUser.displayName}</h1>
+            <h1>Welcome {loggedUser.displayName.toUpperCase()}</h1>
           </Col>
           <q>
           <b>

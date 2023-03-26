@@ -30,7 +30,7 @@ const Navigation = () => {
                 </Form.Text>
                 <Image
                   className="avatar"
-                  src={loggedUser.photoURLS} //pic is not appearing,double check
+                  src={loggedUser.photoURL} //pic is not appearing,double check
                   alt="avatar"
                   width="30"
                   height="30"

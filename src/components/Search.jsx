@@ -24,15 +24,20 @@ const Search = () => {
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
-      where("displayName", "==",  userName)
+      where("displayName", "==", userName.toLowerCase())
     );
-      console.log(q);
+    console.log(q);
     try {
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUser(doc.data());
-      });
-      setErr(false); // Reset error state if user is found
+      if (querySnapshot.size > 0) {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+        setErr(false); // Reset error state if user is found
+      } else {
+        setUser(null);
+        setErr(true);
+      }
     } catch (err) {
       setUser(null);
       setErr(true);
@@ -96,7 +101,11 @@ const Search = () => {
           value={userName}
         />
       </Container>
-      {err && <Form.Text className="text-muted"><b>Person not found</b></Form.Text>}
+      {err && (
+        <Form.Text className="text-muted">
+          <b>Person not found</b>
+        </Form.Text>
+      )}
       {user && (
         <Container className="userMessages" onClick={handleMessaging}>
           <Image
