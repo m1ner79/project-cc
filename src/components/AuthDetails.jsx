@@ -15,8 +15,8 @@ export const AuthInfo = ({ children }) => {
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
-          const { userRole } = userDoc.data();
-          setLoggedUser({ uid: user.uid, userRole });
+          const { userRole, displayName, email, photoURL } = userDoc.data();
+          setLoggedUser({ uid: user.uid, userRole, displayName, email, photoURL });
         }
       } else {
         setLoggedUser(null);
