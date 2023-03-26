@@ -30,7 +30,7 @@ function App() {
                     <Route
                         index
                         element={
-                            <AuthRoute allowedRoles={["Manager", "Staff"]}>
+                            <AuthRoute allowedRoles={["manager", "staff"]}>
                                 <Home />
                             </AuthRoute>
                         }
@@ -43,7 +43,7 @@ function App() {
                     <Route
                         index
                         element={
-                            <AuthRoute allowedRoles={["Parent"]}>
+                            <AuthRoute allowedRoles={["parent", "manager", "staff"]}>
                                 <Connect />
                             </AuthRoute>
                         }
@@ -53,7 +53,7 @@ function App() {
                     <Route
                         index
                         element={
-                            <AuthRoute allowedRoles={["Parent"]}>
+                            <AuthRoute allowedRoles={["manager", "staff"]}>
                                 <AddChild />
                             </AuthRoute>
                         }
