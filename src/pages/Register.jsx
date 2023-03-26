@@ -29,6 +29,19 @@ const Register = () => {
   const lowFirstName = firstName.toLowerCase();
   const lowLastName = lastName.toLowerCase();
 
+  const buildSearchArray = (searchTerm) => {
+    const searchTerms = []
+    let counter = 0
+    let term = ''
+    for (let i of searchTerm) {
+       term += i
+       if (counter > 0) searchTerms.push(term)
+       counter += 1
+    }
+
+    return searchTerms
+  }
+
   // Handle form submission
   const handleSubmit = async (event) => {
     // prevent page refresh on form submit
@@ -61,11 +74,12 @@ const Register = () => {
           uploadResult.metadata.ref);
       } else {
         // set default avatar URL
-        profileDownloadURL = "public/default-avatar.png";
+        profileDownloadURL = "/default-avatar.jpg";
       }
 
       try {
         // Update the user's profile
+        const search = buildSearchArray(lowFirstName).concat(buildSearchArray(lowLastName))
         await updateProfile(response.user, {
           displayName: lowFirstName + " " + lowLastName,
         });
@@ -73,6 +87,7 @@ const Register = () => {
         await setDoc(doc(db, "users", response.user.uid), {
           uid: response.user.uid,
           displayName: response.user.displayName,
+          searchArray: search,
           email: response.user.email,
           photoURL: profileDownloadURL,
           userRole: userRole
