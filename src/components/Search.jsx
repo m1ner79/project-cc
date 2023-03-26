@@ -24,15 +24,18 @@ const Search = () => {
   const handleSearch = async () => {
     const q = query(
       collection(db, "users"),
-      where("displayName", "==", userName.toLowerCase())
+      where("searchArray", "array-contains", userName.toLowerCase())
     );
     console.log(q);
     try {
       const querySnapshot = await getDocs(q);
       if (querySnapshot.size > 0) {
+        let array = []
         querySnapshot.forEach((doc) => {
-          setUser(doc.data());
+          array.push(doc.data())
+          
         });
+        setUser(array);
         setErr(false); // Reset error state if user is found
       } else {
         setUser(null);
@@ -48,7 +51,7 @@ const Search = () => {
     event.code === "Enter" && handleSearch();
   };
 
-  const handleMessaging = async () => {
+  const handleMessaging = async (user) => {
     // verify if person messages exist in database(create if not)
     const loggedUserRef =
       loggedUser.uid > user.uid
@@ -107,20 +110,20 @@ const Search = () => {
         </Form.Text>
       )}
       {user && (
-        <Container className="userMessages" onClick={handleMessaging}>
+        user.map((u) => <Container key={u.uid} className="userMessages" onClick={() => handleMessaging(u)}>
           <Image
             className="avatar"
-            src={user.photoURL}
+            src={u.photoURL}
             alt="avatar"
             width="30"
             height="30"
             roundedCircle
           />
           <Container className="userMessagesInfo">
-            <span>{user.displayName.toUpperCase()}</span>
+            <span>{u.displayName.toUpperCase()}</span>
           </Container>
         </Container>
-      )}
+      ))}
     </Container>
   );
 };
