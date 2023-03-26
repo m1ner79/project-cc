@@ -13,54 +13,54 @@ import AddChild from "./components/AddChild";
 function App() {
 
   const {loggedUser} = useContext(AuthDetails);
-  
-  const AuthRoute = ({children}) =>{
-      if(loggedUser){
-        return children;
-      }else{
-        return <Navigate to="/login" />;
-      }
-  };
 
-  return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/">
-        <Route
-          index
-          element={
-            <AuthRoute>
-              <Home />
-            </AuthRoute>
-          }
-        />
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Route>
+    const AuthRoute = ({ children, allowedRoles }) => {
+        if (loggedUser && allowedRoles.includes(loggedUser.userRole)) {
+            return children;
+        } else if (loggedUser) {
+            return <Navigate to="/connect" />;
+        } else {
+            return <Navigate to="/login" />;
+        }
+    };
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/">
+                    <Route
+                        index
+                        element={
+                            <AuthRoute allowedRoles={["Manager", "Staff"]}>
+                                <Home />
+                            </AuthRoute>
+                        }
+                    />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Route>
 
-      <Route path="/connect">
-          <Route 
-            index
-            element={
-              <AuthRoute>
-                <Connect />
-              </AuthRoute>
-            } 
-          />
-      </Route>
-      <Route path="/addchild">
-          <Route 
-            index
-            element={
-              <AuthRoute>
-                <AddChild />
-              </AuthRoute>
-            } 
-          />
-      </Route>
-      
-    </Routes>
-    </BrowserRouter>
+                <Route path="/connect">
+                    <Route
+                        index
+                        element={
+                            <AuthRoute allowedRoles={["Parent"]}>
+                                <Connect />
+                            </AuthRoute>
+                        }
+                    />
+                </Route>
+                <Route path="/addchild">
+                    <Route
+                        index
+                        element={
+                            <AuthRoute allowedRoles={["Parent"]}>
+                                <AddChild />
+                            </AuthRoute>
+                        }
+                    />
+                </Route>
+            </Routes>
+        </BrowserRouter>
   );
 }
 
