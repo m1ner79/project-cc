@@ -15,10 +15,11 @@ function Home() {
 
   useEffect(() => {
     const fetchChildren = async () => {
-      const q = query(collection(db, "children"), where("parentId", "==", loggedUser.uid));
+      const q = query(collection(db, "children"), where("childId", "==", loggedUser.uid));
       const querySnapshot = await getDocs(q);
       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setChildren(data);
+      console.log(data); // Log the fetched data to the console
     };
 
     fetchChildren();

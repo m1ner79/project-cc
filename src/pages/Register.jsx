@@ -22,11 +22,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [picture, setPicture] = useState(null);
-  const [userType, setUserType] = useState("");
+  const [userRole, setUserRole] = useState("");
   const [formValid, setFormValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const lowFirstName = firstName.toLowerCase();
+  const lowLastName = lastName.toLowerCase();
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -66,7 +67,7 @@ const Register = () => {
       try {
         // Update the user's profile
         await updateProfile(response.user, {
-          displayName: firstName + " " + lastName,
+          displayName: lowFirstName + " " + lowLastName,
         });
         //create user on firestore
         await setDoc(doc(db, "users", response.user.uid), {
@@ -74,7 +75,7 @@ const Register = () => {
           displayName: response.user.displayName,
           email: response.user.email,
           photoURL: profileDownloadURL,
-          userType: userType,
+          userRole: userRole
         });
 
         await setDoc(doc(db, "userMessages", response.user.uid), {});
@@ -125,7 +126,7 @@ const Register = () => {
       valid = false;
     }
 
-    if (!userType) {
+    if (!userRole) {
       errors.userType = (
         <Form.Text className="text-muted">User type is required</Form.Text>
       );
@@ -259,12 +260,12 @@ const Register = () => {
               <Form.Label>User Type</Form.Label>
               <Form.Control
                 as="select"
-                value={userType}
+                value={userRole}
                 onBlur={validateForm}
                 required
-                onChange={(e) => setUserType(e.target.value)}
+                onChange={(e) => setUserRole(e.target.value)}
               >
-                <option value="">Select User Type</option>
+                <option value="">Select User Role</option>
                 <option value="manager">Manager</option>
                 <option value="staff">Staff</option>
                 <option value="parent">Parent</option>
