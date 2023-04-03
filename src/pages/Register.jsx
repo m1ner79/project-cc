@@ -95,7 +95,7 @@ const Register = () => {
 
         await setDoc(doc(db, "userMessages", response.user.uid), {});
 
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         // Handle error
         console.log("Error creating user:", error);
