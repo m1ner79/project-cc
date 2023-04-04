@@ -4,9 +4,9 @@ import MainMenu from "../components/MainMenu";
 import Navigation from "../components/Navigation";
 import Welcome from "../components/Welcome";
 import { AuthDetails } from "../components/AuthDetails";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import ChildrenList from "../components/ChildrenList";
+import Carousel from "../components/Carousel";
 
 function Home() {
   const { loggedUser } = useContext(AuthDetails);
@@ -15,8 +15,7 @@ function Home() {
 
   useEffect(() => {
     const fetchChildren = async () => {
-      const q = query(collection(db, "children"), where("childId", "==", loggedUser.uid));
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocs(collection(db, "children"));
       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setChildren(data);
       console.log(data); // Log the fetched data to the console
@@ -29,10 +28,15 @@ function Home() {
     setSearchTerm(event.target.value);
   };
 
-  const filteredChildren = children.filter((child) =>
-    child.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    child.lastName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredChildren = children.filter((child) => {
+    const lowFirstName = child.lowFirstName || "";
+    const lowLastName = child.lowLastName || "";
+  
+    return (
+      lowFirstName.includes(searchTerm.toLowerCase()) ||
+      lowLastName.includes(searchTerm.toLowerCase())
+    );
+  });
   return (
     <>
       <Navigation />
@@ -48,7 +52,7 @@ function Home() {
               value={searchTerm}
               className="mb-3"
             />
-            <ChildrenList children={filteredChildren} />
+            <Carousel key={filteredChildren.length} children={filteredChildren} />
           </Col>
         </Row>
         </Container>
