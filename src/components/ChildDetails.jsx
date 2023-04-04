@@ -1,16 +1,20 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const ChildDetails = ({ child }) => {
   return (
-    <ListGroup.Item>
-      <h5>{child.firstName} {child.lastName}</h5>
-      <p>Date of Birth: {child.dob}</p>
-      <p>Parent Name: {child.parentName}</p>
-      <p>Parent Email: {child.parentEmail}</p>
-      <p>Parent Mobile Number: {child.parentMobile}</p>
-      <p>Child's Health Info: {child.healthInfo}</p>
-    </ListGroup.Item>
+    <Card>
+      <Card.Header className="formCard" as="h5">
+        {child.lowFirstName} {child.lowLastName}
+      </Card.Header>
+      <Card.Body>
+      <Card.Text>Date of Birth: {child.dob}</Card.Text>
+      <Card.Text>Parent Name: {child.parentName}</Card.Text>
+      <Card.Text>Parent Email: {child.parentEmail}</Card.Text>
+      <Card.Text>Parent Mobile Number: {child.parentMobile}</Card.Text>
+      <Card.Text>Child's Health Info: {child.healthInfo}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
