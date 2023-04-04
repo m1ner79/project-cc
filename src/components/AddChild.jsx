@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Navigation from "./Navigation";
 import {Link} from "react-router-dom";
+import {doc, updateDoc} from "firebase/firestore";
 
 const AddChild = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,23 +16,47 @@ const AddChild = () => {
   const [healthInfo, setHealthInfo] = useState("");
   const [observations, setObservations] = useState("");
   const [childId, setChildId] = useState("");
+  const lowFirstName = firstName.toLowerCase();
+  const lowLastName = lastName.toLowerCase();
+  const [updateMode, setUpdateMode] = useState(false);
+
+  const buildSearchArray = (searchTerm) => {
+    const searchTerms = []
+    let counter = 0
+    let term = ''
+    for (let i of searchTerm) {
+      term += i
+      if (counter > 0) searchTerms.push(term)
+      counter += 1
+    }
+
+    return searchTerms
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const searchTerms = buildSearchArray(lowFirstName + ' ' + lowLastName)
     const child = {
-      firstName,
-      lastName,
+      lowFirstName,
+      lowLastName,
       parentName,
       dob,
       parentEmail,
       parentMobile,
       healthInfo,
       observations,
-      childId,
+      childId: '',
+      searchArray: searchTerms,
     };
     try {
       const docRef = await addDoc(collection(db, "children"), child);
       console.log("Child added with ID: ", docRef.id);
+
+      // Update the childId in the database
+      await updateDoc(doc(db, "children", docRef.id), {
+      childId: docRef.id,
+    });
+
       setFirstName("");
       setLastName("");
       setParentName("");
