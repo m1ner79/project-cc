@@ -29,7 +29,7 @@ const Navigation = () => {
                   {loggedUser.displayName.toUpperCase()}
                 </Form.Text>
                 <Image
-                  className="avatar text-center"
+                  className="avatar"
                   src={loggedUser.photoURL} //pic is not appearing,double check
                   alt="avatar"
                   width="30"
