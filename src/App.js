@@ -37,42 +37,40 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          <Route
-            index
-            element={
-              <AuthRoute allowedRoles={["manager", "staff"]}>
-                <Home />
-              </AuthRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-
-        <Route path="/connect">
-          <Route
-            index
-            element={
-              <AuthRoute allowedRoles={["parent", "manager", "staff"]}>
-                <Connect />
-              </AuthRoute>
-            }
-          />
-        </Route>
-        <Route path="/addchild">
-          <Route
-            index
-            element={
-              <AuthRoute allowedRoles={["manager", "staff"]}>
-                <AddChild />
-              </AuthRoute>
-            }
-          />
-        </Route>
-        <Route path="/update/:id">
-          <Route index element={<UpdateChild onUpdate={updateChild} />} />
-        </Route>
+        <Route
+          path="/"
+          element={
+            <AuthRoute allowedRoles={["manager", "staff"]}>
+              <Home />
+            </AuthRoute>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/connect"
+          element={
+            <AuthRoute allowedRoles={["parent", "manager", "staff"]}>
+              <Connect />
+            </AuthRoute>
+          }
+        />
+        <Route
+          path="/addchild"
+          element={
+            <AuthRoute allowedRoles={["manager", "staff"]}>
+              <AddChild />
+            </AuthRoute>
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={
+            <AuthRoute allowedRoles={["manager", "staff"]}>
+              <UpdateChild onUpdate={updateChild} />
+            </AuthRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
