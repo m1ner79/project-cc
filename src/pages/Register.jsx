@@ -192,7 +192,7 @@ const Register = () => {
   return (
     <Container className="regForm">
       <Card>
-        <Card.Header className="regFormCard" as="h5">
+        <Card.Header className="regFormCard text-center" as="h5">
           <Image src="logo.png" rounded />
           Register for Creche Connect
         </Card.Header>
@@ -283,17 +283,16 @@ const Register = () => {
                 <div className="error-text">{errors.userType}</div>
               )}
             </Form.Group>
-
-            <Button variant="primary" type="submit">
+            <br></br>
+            <Container className="text-center">
+            <Button variant="primary" type="submit" size="lg" style={{marginBottom: 10}}>
               Sign Up
             </Button>
+            </Container>
           </Form>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          Are you already registered?{" "}
-          <Link to="/login">
-            <b>Login</b>
-          </Link>
+        <Card.Footer className="text-muted text-center">
+          Are you already registered? <Link to="/login"><b>Login</b></Link>
         </Card.Footer>
       </Card>
     </Container>

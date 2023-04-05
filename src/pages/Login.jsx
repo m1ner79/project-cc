@@ -26,7 +26,7 @@ const Login = () => {
   return (
     <Container className="form login">
       <Card>
-        <Card.Header className="formCard" as="h5">
+        <Card.Header className="formCard text-center" as="h5">
           <Image src="logo.png" rounded />
           Login
         </Card.Header>
@@ -57,13 +57,15 @@ const Login = () => {
                 letters, numbers, special characters, upper and lower cases.
               </Form.Text>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Container className="text-center">
+            <Button variant="primary" type="submit" size="lg" style={{marginBottom: 10}}>
               Sign In
             </Button>
+            </Container>
           </Form>
           {error && <div className="alert alert-danger" role="alert"><Form.Text className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text> </div> }
         </Card.Body>
-        <Card.Footer className="text-muted">
+        <Card.Footer className="text-muted text-center">
           Are you not registered? <Link to="/register"><b>Register</b></Link>
         </Card.Footer>
       </Card>
