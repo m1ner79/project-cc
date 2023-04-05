@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Container,
-  Card,
-  Image,
-  FloatingLabel,
-} from "react-bootstrap";
+import { Form, Button, Container, Card, Image } from "react-bootstrap";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -30,17 +23,17 @@ const Register = () => {
   const lowLastName = lastName.toLowerCase();
 
   const buildSearchArray = (searchTerm) => {
-    const searchTerms = []
-    let counter = 0
-    let term = ''
+    const searchTerms = [];
+    let counter = 0;
+    let term = "";
     for (let i of searchTerm) {
-       term += i
-       if (counter > 0) searchTerms.push(term)
-       counter += 1
+      term += i;
+      if (counter > 0) searchTerms.push(term);
+      counter += 1;
     }
 
-    return searchTerms
-  }
+    return searchTerms;
+  };
 
   // Handle form submission
   const handleSubmit = async (event) => {
@@ -70,8 +63,7 @@ const Register = () => {
         // upload picture
         const uploadResult = await uploadBytesResumable(storageRef, picture);
         // get download URL for the picture
-        profileDownloadURL = await getDownloadURL(
-          uploadResult.metadata.ref);
+        profileDownloadURL = await getDownloadURL(uploadResult.metadata.ref);
       } else {
         // set default avatar URL
         profileDownloadURL = "/default-avatar.jpg";
@@ -79,7 +71,9 @@ const Register = () => {
 
       try {
         // Update the user's profile
-        const search = buildSearchArray(lowFirstName).concat(buildSearchArray(lowLastName))
+        const search = buildSearchArray(lowFirstName).concat(
+          buildSearchArray(lowLastName)
+        );
         await updateProfile(response.user, {
           displayName: lowFirstName + " " + lowLastName,
         });
@@ -90,7 +84,7 @@ const Register = () => {
           searchArray: search,
           email: response.user.email,
           photoURL: profileDownloadURL,
-          userRole: userRole
+          userRole: userRole,
         });
 
         await setDoc(doc(db, "userMessages", response.user.uid), {});
