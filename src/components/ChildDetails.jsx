@@ -8,7 +8,7 @@ const ChildDetails = ({ child, removeChild }) => {
 
   return (
     <Card>
-      <Card.Header className="formCard" as="h5">
+      <Card.Header className="formCard text-center" as="h5">
         {fullNameCaps}
       </Card.Header>
       <Card.Body>
@@ -36,19 +36,19 @@ const ChildDetails = ({ child, removeChild }) => {
           <b>Observations:</b> <br></br>
           {child.observations}
         </Card.Text>
-        <Card.Text></Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        <Card.Text></Card.Text>
+      <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
+        <br></br>
         <Link to={`/update/${child.id}`}>
-          <Button variant="primary">Update</Button>
+          <Button variant="primary" style={{backgroundColor: "green", border: "green", marginRight: 5, marginBottom: 5}}>
+            Update
+            </Button>
         </Link>
-        <Button variant="danger" onClick={() => removeChild(child.id)}>
+        <Button variant="danger" style={{marginBottom: 5}} onClick={() => removeChild(child.id)}>
           Remove
         </Button>
         <br></br>
-        <br></br>
       </Card.Footer>
+      </Card.Body>
     </Card>
   );
 };

@@ -8,9 +8,9 @@ function Welcome() {
   return (
     <Container className="welcome">
       <Container>
-      <Row>
+      <Row className="text-center">
           <Col md={{ span: 6, offset: 3 }}>
-            <h1>Welcome {loggedUser.displayName.toUpperCase()}</h1>
+            <h1>Welcome, <br></br> {loggedUser.displayName.toUpperCase()}</h1>
           </Col>
           <q>
           <b>

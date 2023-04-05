@@ -74,9 +74,9 @@ const AddChild = () => {
   return (
     <>
     <Navigation />
-    <Container className="addChild">
+    <Container className="addChild" style={{marginTop: 10}}>
         <Card>
-        <Card.Header className="formCard" as="h5">
+        <Card.Header className="formCard text-center" as="h5">
           Add Child
         </Card.Header>
         <Card.Body>
@@ -151,18 +151,24 @@ const AddChild = () => {
                       value={observations}
                       onChange={(event) => setObservations(event.target.value)} />
               </Form.Group>
-
-              <Button variant="primary" type="submit">
+              <br></br>
+              <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
+              <br></br>
+              <Button variant="primary" type="submit" style={{backgroundColor: "green", border: "green" }}>
                   Add Child
               </Button>
+              <br></br>
+              </Card.Footer>
           </Form>
         </Card.Body>
         </Card>
+        <Container className="text-center">
         <Link to="/">
-            <Button className="connectButton" variant="primary" size="lg">
+            <Button className="connectButton" variant="primary" size="lg" style={{marginTop: 10}}>
               Back to Main Menu
             </Button>
           </Link>
+          </Container>
       </Container>
       </>
   );

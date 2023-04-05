@@ -25,11 +25,11 @@ const Navigation = () => {
           <Nav>
             {loggedUser && (
               <>
-                <Form.Text className="text-muted">
+                <Form.Text className="text-muted text-center">
                   {loggedUser.displayName.toUpperCase()}
                 </Form.Text>
                 <Image
-                  className="avatar"
+                  className="avatar text-center"
                   src={loggedUser.photoURL} //pic is not appearing,double check
                   alt="avatar"
                   width="30"
