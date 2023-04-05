@@ -1,13 +1,37 @@
 import React from 'react';
 import { Carousel as BootstrapCarousel } from 'react-bootstrap';
 import ChildDetails from './ChildDetails';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from "../firebase";
 
-const Carousel = ({ children }) => {
+const Carousel = ({ children, onRefresh}) => {
+
+
+    const deleteChildFromDb = async (id) => {
+        try {
+            await deleteDoc(doc(db, "children", id));
+        } catch (error) {
+            console.error("Error removing child: ", error);
+        }
+    };
+
+    const updateChild = (id) => {
+        // handle updating child details here
+        console.log('Update child with id:', id);
+    };
+    
+    const removeChild = (id) => {
+        if (window.confirm("Are you sure you want to remove this child?")) {
+            deleteChildFromDb(id);
+            console.log("Remove child with id:", id);
+            onRefresh(); // Trigger a refresh in the Home component
+        }
+    };
 return (
     <BootstrapCarousel>
     {children.map((child) => (
         <BootstrapCarousel.Item key={child.id}>
-        <ChildDetails child={child} />
+        <ChildDetails child={child} updateChild={updateChild} removeChild={removeChild} />
         </BootstrapCarousel.Item>
     ))}
     </BootstrapCarousel>
