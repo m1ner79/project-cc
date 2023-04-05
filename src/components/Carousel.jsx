@@ -4,7 +4,7 @@ import ChildDetails from './ChildDetails';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from "../firebase";
 
-const Carousel = ({ children, onRefresh}) => {
+const Carousel = ({ children, onRefresh }) => {
 
 
     const deleteChildFromDb = async (id) => {
@@ -31,7 +31,7 @@ return (
     <BootstrapCarousel>
     {children.map((child) => (
         <BootstrapCarousel.Item key={child.id}>
-        <ChildDetails child={child} updateChild={updateChild} removeChild={removeChild} />
+        <ChildDetails child={child} updateChild={updateChild} removeChild={removeChild}/>
         </BootstrapCarousel.Item>
     ))}
     </BootstrapCarousel>
