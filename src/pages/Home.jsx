@@ -12,6 +12,11 @@ function Home() {
   const { loggedUser } = useContext(AuthDetails);
   const [children, setChildren] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+  setRefresh(!refresh);
+};
 
   useEffect(() => {
     const fetchChildren = async () => {
@@ -22,7 +27,7 @@ function Home() {
     };
 
     fetchChildren();
-  }, [loggedUser]);
+  }, [loggedUser, refresh]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -52,7 +57,7 @@ function Home() {
               value={searchTerm}
               className="mb-3"
             />
-            <Carousel key={filteredChildren.length} children={filteredChildren} />
+            <Carousel key={filteredChildren.length} children={filteredChildren} onRefresh={handleRefresh} />
           </Col>
         </Row>
         </Container>
