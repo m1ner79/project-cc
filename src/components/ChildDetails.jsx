@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import DailyReview from "./DailyReview";
 
 const ChildDetails = ({ child, removeChild }) => {
   let fullName = `${child.lowFirstName} ${child.lowLastName}`; // combine first and last name
@@ -36,6 +37,23 @@ const ChildDetails = ({ child, removeChild }) => {
           <b>Observations:</b> <br></br>
           {child.observations}
         </Card.Text>
+        <Card.Text>
+          <b>Daily Reviews - {new Date().toLocaleDateString()}</b>
+          <hr />
+          {child.dailyReviews &&
+            child.dailyReviews.map((review, index) => (
+              <div key={index} style={{ marginBottom: "10px" }}>
+                <b>Meal Time:</b> {review.mealTime} <br />
+                <b>Meals:</b> {review.meals} <br />
+                <b>Nappy Time:</b> {review.nappyTime} <br />
+                <b>Nappy Status:</b> {review.nappyStatus} <br />
+                <b>Activities:</b> {review.activities} <br />
+                <b>Other Comments:</b> {review.otherComments} <br />
+                <b>Updated By:</b> {review.updatedBy}
+                <hr />
+              </div>
+            ))}
+        </Card.Text>
       <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
         <br></br>
         <Link to={`/update/${child.id}`}>
@@ -46,6 +64,19 @@ const ChildDetails = ({ child, removeChild }) => {
         <Button variant="danger" style={{marginBottom: 5}} onClick={() => removeChild(child.id)}>
           Remove
         </Button>
+        <Link to={`/daily-review/${child.id}`}>
+       <Button
+      variant="primary"
+      style={{
+      backgroundColor: "blue",
+      border: "blue",
+      marginLeft: 5,
+      marginBottom: 5,
+    }}
+  >
+    Add Review
+  </Button>
+</Link>
         <br></br>
       </Card.Footer>
       </Card.Body>
