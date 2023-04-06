@@ -12,6 +12,8 @@ import AddChild from "./components/AddChild";
 import UpdateChild from "./components/UpdateChild";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "./firebase";
+import DailyReview from "./components/DailyReview";
+import Archive from "./components/Archive";
 
 function App() {
   const { loggedUser } = useContext(AuthDetails);
@@ -71,7 +73,23 @@ function App() {
             </AuthRoute>
           }
         />
-      </Routes>
+        <Route
+          path="/daily-review/:id"
+          element={
+            <AuthRoute allowedRoles={["manager", "staff"]}>
+              <DailyReview />
+            </AuthRoute>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <AuthRoute allowedRoles={["manager", "staff"]}>
+              <Archive />
+            </AuthRoute>
+          }
+        />
+      </Routes>   
     </BrowserRouter>
   );
 }
