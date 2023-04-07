@@ -51,7 +51,8 @@ const ChildDetails = ({child, removeChild}) => {
                                 <b>Nappy Status:</b> {review.nappyStatus} <br/>
                                 <b>Activities:</b> {review.activities} <br/>
                                 <b>Other Comments:</b> {review.otherComments} <br/>
-                                <b>Updated By:</b> {review.updatedBy}
+                                <b>Updated By:</b> {review.updatedBy} <br/>
+                                <b>Updated At:</b> {new Date(review.timestamp?.toDate()).toLocaleTimeString()}
                                 <hr/>
                             </div>
                         ))}

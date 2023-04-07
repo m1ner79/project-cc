@@ -96,6 +96,7 @@ const Archive = () => {
                     <p>Activities: {review.activities}</p> 
                     <p>Other Comments: {review.otherComments}</p> 
                     <p>Updated By: {review.updatedBy}</p> 
+                    <p>Updated At: {new Date(review.timestamp?.toDate()).toLocaleTimeString()}</p> 
                     </div>
                   ))}
                 </td>
