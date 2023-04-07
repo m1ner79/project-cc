@@ -58,12 +58,14 @@ const ChildDetails = ({child, removeChild}) => {
                 </Card.Text>
                 <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
                     <br></br>
+                    {loggedUser && (loggedUser.userRole === "manager" )&& (
                     <Link to={`/update/${child.id}`}>
                         <Button variant="primary"
                                 style={{backgroundColor: "green", border: "green", marginRight: 5, marginBottom: 5}}>
                             Update
                         </Button>
                     </Link>
+                    )}
                     {loggedUser && (loggedUser.userRole === "manager" )&& (
                     <Button variant="danger" style={{marginBottom: 5}} onClick={() => removeChild(child.id)}>
                         Remove
