@@ -17,7 +17,7 @@ const Navigation = () => {
       variant="dark"
     >
       <Container>
-        <Image src="logo.png" rounded />
+        <Image src="/logo.png" rounded />
         <Navbar.Brand href="#home">Creche Connect</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
