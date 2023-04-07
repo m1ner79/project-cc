@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Card, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {AuthDetails} from "./AuthDetails";
@@ -7,12 +7,45 @@ const ChildDetails = ({child, removeChild}) => {
     let fullName = `${child.lowFirstName} ${child.lowLastName}`; // combine first and last name
     let fullNameCaps = fullName.toUpperCase(); // convert to uppercase
 
+    const [showCopyPopup, setShowCopyPopup] = useState(false);
     const { loggedUser } = useContext(AuthDetails);
 
     const getCurrentFormattedDate = () => {
         const today = new Date();
         return `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
     };
+
+    const copyDailyReviews = () => {
+        const reviews = child.dailyReviews
+          .filter((review) => review.date === getCurrentFormattedDate())
+          .map((review, index) => {
+            return `
+      Meal Time: ${review.mealTime}
+      Meals: ${review.meals}
+      Nappy Time: ${review.nappyTime}
+      Nappy Status: ${review.nappyStatus}
+      Activities: ${review.activities}
+      Other Comments: ${review.otherComments}
+      Updated By: ${review.updatedBy}
+      Updated At: ${new Date(review.timestamp?.toDate()).toLocaleTimeString()}
+            `;
+          });
+      
+        const reviewsText = reviews.join("\n\n");
+      
+        navigator.clipboard.writeText(reviewsText).then(
+          () => {
+            console.log("Daily reviews copied to clipboard!");
+            setShowCopyPopup(true);
+      setTimeout(() => {
+        setShowCopyPopup(false);
+      }, 3000);
+          },
+          (err) => {
+            console.error("Could not copy daily reviews: ", err);
+          }
+        );
+      };
 
     return (
         <Card>
@@ -92,7 +125,27 @@ const ChildDetails = ({child, removeChild}) => {
                             Add Review
                         </Button>
                     </Link>
+                    <Button variant="info" style={{marginLeft: 5, marginBottom: 5}} onClick={copyDailyReviews}>
+                        Copy
+                    </Button>
                     <br></br>
+                    {showCopyPopup && (
+      <div
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 100,
+          backgroundColor: 'white',
+          borderRadius: '5px',
+          padding: '10px',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+        }}
+      >
+        Daily reviews copied to clipboard!
+      </div>
+    )}
                 </Card.Footer>
             </Card.Body>
         </Card>
