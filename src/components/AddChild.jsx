@@ -35,6 +35,13 @@ const AddChild = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const childName = `${firstName.toUpperCase()} ${lastName.toUpperCase()}`;
+     // Add the confirmation dialog
+    if (!window.confirm(`Are you sure you want to add child: ${childName}?`)) {
+    return;
+  }
+
     const searchTerms = buildSearchArray(lowFirstName + ' ' + lowLastName)
     const child = {
       lowFirstName,
