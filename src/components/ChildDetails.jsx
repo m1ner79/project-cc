@@ -9,6 +9,11 @@ const ChildDetails = ({child, removeChild}) => {
 
     const { loggedUser } = useContext(AuthDetails);
 
+    const getCurrentFormattedDate = () => {
+        const today = new Date();
+        return `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    };
+
     return (
         <Card>
             <Card.Header className="formCard text-center" as="h5">
@@ -43,7 +48,9 @@ const ChildDetails = ({child, removeChild}) => {
                     <b>Daily Reviews - {new Date().toLocaleDateString()}</b>
                     <hr/>
                     {child.dailyReviews &&
-                        child.dailyReviews.map((review, index) => (
+                        child.dailyReviews
+                        .filter((review) => review.date === getCurrentFormattedDate())
+                        .map((review, index) => (
                             <div key={index} style={{marginBottom: "10px"}}>
                                 <b>Meal Time:</b> {review.mealTime} <br/>
                                 <b>Meals:</b> {review.meals} <br/>
