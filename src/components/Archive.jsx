@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form, Table, Button } from "react-bootstrap";
+import { Container, Form, Table, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 import {
   collection,
@@ -52,8 +53,12 @@ const Archive = () => {
   return (
     <>
       <Navigation />
-      <Container style={{ marginTop: 20 }}>
-        <h3>Archive</h3>
+      <Container className="archive" style={{ marginTop: 10 }}>
+        <Card>
+          <Card.Header className="formCard text-center" as="h5">
+            Archive
+          </Card.Header>
+        <Card.Body>
         <Form>
           <Form.Group controlId="search">
             <Form.Label>Search by {filter}:</Form.Label>
@@ -104,8 +109,29 @@ const Archive = () => {
             ))}
           </tbody>
         </Table>
+        <Card.Footer
+                className="text-center"
+                style={{ backgroundColor: "white" }}
+              >
+                <br></br>
         <Button onClick={handlePrint}>Print</Button>
         {/* Add download and copy functionality */}
+        <br></br>
+        </Card.Footer>
+      </Card.Body>
+        </Card>
+        <Container className="text-center">
+          <Link to="/">
+            <Button
+              className="connectButton"
+              variant="primary"
+              size="lg"
+              style={{ marginTop: 10 }}
+            >
+              Back to Main Menu
+            </Button>
+          </Link>
+        </Container>
       </Container>
     </>
   );
