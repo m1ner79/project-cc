@@ -86,7 +86,7 @@ const Archive = () => {
               <tr key={child.id}>
                 <td>{child.lowFirstName + " " + child.lowLastName}</td>
                 <td>
-                  {child.dailyReviews.map((review, index) => (
+                  {child.dailyReviews && child.dailyReviews.map((review, index) => (
                     <div key={index}>
                     <p>Date: {review.date}</p>
                     <p>Meal Time: {review.mealTime}</p>
