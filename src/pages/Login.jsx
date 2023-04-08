@@ -27,7 +27,7 @@ const Login = () => {
     <Container className="form login">
       <Card>
         <Card.Header className="formCard text-center" as="h5">
-          <Image src="logo.png" rounded />
+          <Image src="/logo.png" rounded />
           Login
         </Card.Header>
         <Card.Body>
@@ -66,7 +66,7 @@ const Login = () => {
           {error && <div className="alert alert-danger" role="alert"><Form.Text className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text> </div> }
         </Card.Body>
         <Card.Footer className="text-muted text-center">
-          Are you not registered? <Link to="/register"><b>Register</b></Link>
+          Did you <Link to="/forgotpassword"><b>Forgot Password?</b></Link><br></br>Are you not registered? <Link to="/register"><b>Register</b></Link>
         </Card.Footer>
       </Card>
     </Container>
