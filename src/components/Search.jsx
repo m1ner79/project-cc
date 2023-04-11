@@ -26,26 +26,26 @@ const Search = () => {
       collection(db, "users"),
       where("searchArray", "array-contains", userName.toLowerCase())
     );
-    console.log(q);
+  
     try {
       const querySnapshot = await getDocs(q);
-      if (querySnapshot.size > 0) {
-        let array = []
-        querySnapshot.forEach((doc) => {
-          array.push(doc.data())
-          
-        });
-        setUser(array);
+      if (!querySnapshot.empty) {
+        const usersArray = querySnapshot.docs
+          .map((doc) => doc.data())
+          .filter((user) => user.uid !== loggedUser.uid);
+        setUser(usersArray);
         setErr(false); // Reset error state if user is found
       } else {
         setUser(null);
         setErr(true);
       }
     } catch (err) {
+      console.error("Error searching for user:", err);
       setUser(null);
       setErr(true);
     }
   };
+  
 
   const handleKey = (event) => {
     event.code === "Enter" && handleSearch();
@@ -110,7 +110,8 @@ const Search = () => {
         </Form.Text>
       )}
       {user && (
-        user.map((u) => <Container key={u.uid} className="userMessages" onClick={() => handleMessaging(u)}>
+        user.map((u) => <Container key={u.uid} className="userMessages" onClick={() => handleMessaging(u)} style={{marginTop: 10
+        }}>
           <Image
             className="avatar"
             src={u.photoURL}
