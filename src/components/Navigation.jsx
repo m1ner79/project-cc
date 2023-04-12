@@ -25,17 +25,9 @@ const Navigation = () => {
           <Nav>
             {loggedUser && (
               <>
-                <Form.Text className="text-muted text-center">
+                <Form.Text className="text-muted text-center" style={{padding: 10}}>
                   {loggedUser.displayName.toUpperCase()}
                 </Form.Text>
-                <Image
-                  className="avatar"
-                  src={loggedUser.photoURL} //pic is not appearing,double check
-                  alt="avatar"
-                  width="30"
-                  height="30"
-                  roundedCircle
-                />
                 <Button
                   className="logoutButton"
                   variant="light"
