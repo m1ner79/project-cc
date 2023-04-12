@@ -14,31 +14,30 @@ const Message = ({ message }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
+  const isLoggedUser = message.senderId === loggedUser.uid;
+
   return (
     <>
       <Container
         ref={ref}
-        className={
-          'message ${message.senderID === loggedUser.uid && "loggedUser"}'
-        }
+        className={`message ${isLoggedUser ? "loggedUser" : "recipient"}`}
       >
-        {/* <Container className="messageDetails">
-          <Image
-            className="avatar"
-            src={
-              message.senderID === loggedUser.uid
-                ? loggedUser.photoURL
-                : data.user.photoURL
-            }
-            alt="avatar"
-            roundedCircle
-          />
-          <span>Last message:</span>
-        </Container> */}
+        {isLoggedUser || <Image
+          className="avatar"
+          src={data.user.photoURL}
+          alt="avatar"
+          roundedCircle
+        />}
         <Container className="messageSubject">
           <p>{message.text}</p>
           {message.img && <Image src={message.img} alt="" />}
         </Container>
+        {isLoggedUser && <Image
+          className="avatar"
+          src={loggedUser.photoURL}
+          alt="avatar"
+          roundedCircle
+        />}
       </Container>
     </>
   );
