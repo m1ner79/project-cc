@@ -32,7 +32,7 @@ const Chats = () => {
   };
 
   return (
-    <Container className="messages">
+    <Container className="lastMessages">
       {Object.entries(messages)
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((mess) => (
