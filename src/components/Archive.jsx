@@ -13,8 +13,7 @@ import { db } from "../firebase";
 
 const Archive = () => {
   const [children, setChildren] = useState([]);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("name");
+  const [search, setSearch] = useState({ name: "", date: "" });
   const [filteredChildren, setFilteredChildren] = useState([]);
 
   useEffect(() => {
@@ -25,26 +24,36 @@ const Archive = () => {
   }, []);
 
   useEffect(() => {
-    if (filter === "name") {
-      setFilteredChildren(
-        children.filter((child) => {
-            const lowFirstName = child.lowFirstName.toLowerCase();
-            const lowLastName = child.lowLastName.toLowerCase();
-          
-            return (
-              lowFirstName.includes(search.toLowerCase()) ||
-              lowLastName.includes(search.toLowerCase())
-            );
-          })
-      );
-    } else if (filter === "date") {
-      setFilteredChildren(
-        children.filter((child) =>
-          child.dailyReviews.some((review) => review.date === search)
-        )
-      );
-    }
-  }, [search, children, filter]);
+    const formatDate = (dateStr) => {
+      const parts = dateStr.split("/");
+      if (parts.length === 3) {
+        // Assuming "D/M/YYYY" format
+        return `${parts[2]}-${parts[1].padStart(2, "0")}-${parts[0].padStart(2, "0")}`;
+      } else {
+        // Assuming "YYYY-MM-DD" format
+        return dateStr;
+      }
+    };
+  
+    setFilteredChildren(
+      children.filter((child) => {
+        const lowFirstName = child.lowFirstName.toLowerCase();
+        const lowLastName = child.lowLastName.toLowerCase();
+        const nameMatch = search.name
+          ? lowFirstName.includes(search.name.toLowerCase()) ||
+            lowLastName.includes(search.name.toLowerCase())
+          : true;
+        const dateMatch = search.date
+          ? child.dailyReviews.some((review) => {
+              const formattedReviewDate = formatDate(review.date);
+              return formattedReviewDate === search.date;
+            })
+          : true;
+  
+        return nameMatch && dateMatch;
+      })
+    );
+  }, [search, children]);
 
   const handlePrint = () => {
     window.print();
@@ -59,25 +68,23 @@ const Archive = () => {
             Archive
           </Card.Header>
         <Card.Body>
-        <Form>
-          <Form.Group controlId="search">
-            <Form.Label>Search by {filter}:</Form.Label>
-            <Form.Control
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="filter">
-            <Form.Label>Filter by:</Form.Label>
-            <Form.Select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-            >
-              <option value="name">Name</option>
-              <option value="date">Date</option>
-            </Form.Select>
-          </Form.Group>
+        <Form onSubmit={(e) => e.preventDefault()}>
+        <Form.Group controlId="searchName">
+  <Form.Label>Search by name:</Form.Label>
+  <Form.Control
+    type="text"
+    value={search.name}
+    onChange={(e) => setSearch({ ...search, name: e.target.value })}
+  />
+</Form.Group>
+<Form.Group controlId="searchDate">
+  <Form.Label>Search by date:</Form.Label>
+  <Form.Control
+    type="date"
+    value={search.date}
+    onChange={(e) => setSearch({ ...search, date: e.target.value })}
+  />
+</Form.Group>
         </Form>
         <Table striped bordered hover responsive="sm">
           <thead>
