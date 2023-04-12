@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Form, Button, Card, Container } from "react-bootstrap";
 import Navigation from "./Navigation";
 import { AuthDetails } from "../components/AuthDetails";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const DailyReview = () => {
@@ -14,15 +14,38 @@ const DailyReview = () => {
   const [nappyStatus, setNappyStatus] = useState("");
   const [activities, setActivities] = useState("");
   const [otherComments, setOtherComments] = useState("");
-  const { id } = useParams();
   const navigate = useNavigate();
   const { loggedUser } = useContext(AuthDetails);
+  const [childName, setChildName] = useState("");
+  const { id } = useParams(); // Get the child ID from the URL
 
   const today = new Date();
   const formattedDate = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
 
+  // Fetch the child data from the database based on the child ID
+  useEffect(() => {
+    const fetchChild = async () => {
+      try {
+        const docRef = doc(db, "children", id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setChildName({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching child: ", error);
+      }
+    };
+
+    fetchChild();
+  }, [id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!window.confirm(`Are you happy with the review information for child: ${childName.lowFirstName} ${childName.lowLastName}?`)) return;
 
     const newReview = {
       date: formattedDate,
@@ -41,7 +64,7 @@ const DailyReview = () => {
       await updateDoc(childDoc, {
         dailyReviews: arrayUnion(newReview),
       });
-      navigate(`/update/${id}`);
+      navigate(`/`);
     } catch (error) {
       console.error("Error adding daily review:", error);
     }
