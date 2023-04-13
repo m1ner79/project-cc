@@ -46,6 +46,7 @@ const Chats = () => {
               src={mess[1].userInfo.photoURL}
               width="30"
               height="30"
+              alt="avatar"
               roundedCircle
             />
             <Container className="userInfo">

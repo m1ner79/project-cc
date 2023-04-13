@@ -41,7 +41,7 @@ const ForgotPassword = () => {
       <Container className="form forgotPass" style={{ marginTop: 10 }}>
         <Card>
           <Card.Header className="formCard text-center" as="h5">
-            <Image src="/logo.png" rounded />
+            <Image src="/logo.png" alt="logo" rounded />
             Forgot Password
           </Card.Header>
           <Card.Body>

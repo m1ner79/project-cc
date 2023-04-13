@@ -193,7 +193,7 @@ const Register = () => {
     <Container className="regForm">
       <Card>
         <Card.Header className="regFormCard text-center" as="h5">
-          <Image src="logo.png" rounded />
+          <Image src="logo.png" alt="logo" rounded />
           Register for Creche Connect
         </Card.Header>
         <Card.Body>

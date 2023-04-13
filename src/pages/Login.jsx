@@ -27,7 +27,7 @@ const Login = () => {
     <Container className="form login">
       <Card>
         <Card.Header className="formCard text-center" as="h5">
-          <Image src="/logo.png" rounded />
+          <Image src="/logo.png" alt="logo" rounded />
           Login
         </Card.Header>
         <Card.Body>
