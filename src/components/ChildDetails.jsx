@@ -74,8 +74,8 @@ const ChildDetails = ({child, removeChild}) => {
                     {child.healthInfo}
                 </Card.Text>
                 <Card.Text>
-                    <b>Observations:</b> <br></br>
-                    {child.observations}
+                    <b>Additional Information:</b> <br></br>
+                    {child.additionalInfo}
                 </Card.Text>
                 <Card.Text>
                     <b>Daily Reviews - {new Date().toLocaleDateString()}</b>

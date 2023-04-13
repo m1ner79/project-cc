@@ -14,7 +14,7 @@ const AddChild = () => {
   const [parentEmail, setParentEmail] = useState("");
   const [parentMobile, setParentMobile] = useState("");
   const [healthInfo, setHealthInfo] = useState("");
-  const [observations, setObservations] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
   const [childId, setChildId] = useState("");
   const lowFirstName = firstName.toLowerCase();
   const lowLastName = lastName.toLowerCase();
@@ -51,7 +51,7 @@ const AddChild = () => {
       parentEmail,
       parentMobile,
       healthInfo,
-      observations,
+      additionalInfo,
       childId: '',
       searchArray: searchTerms,
     };
@@ -71,7 +71,7 @@ const AddChild = () => {
       setParentEmail("");
       setParentMobile("");
       setHealthInfo("");
-      setObservations("");
+      setAdditionalInfo("");
       setChildId(docRef.id);
     } catch (error) {
       console.error("Error adding child: ", error);
@@ -150,13 +150,13 @@ const AddChild = () => {
                       onChange={(event) => setHealthInfo(event.target.value)} />
               </Form.Group>
 
-              <Form.Group controlId="observations">
-                  <Form.Label>Observations</Form.Label>
+              <Form.Group controlId="additionalInfo">
+                  <Form.Label>Additional Information</Form.Label>
                   <Form.Control
                       as="textarea"
-                      placeholder="Enter your observations"
-                      value={observations}
-                      onChange={(event) => setObservations(event.target.value)} />
+                      placeholder="Enter additional information"
+                      value={additionalInfo}
+                      onChange={(event) => setAdditionalInfo(event.target.value)} />
               </Form.Group>
               <br></br>
               <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
