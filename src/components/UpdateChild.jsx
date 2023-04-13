@@ -102,7 +102,7 @@ const UpdateChild = ({ onUpdate }) => {
                 <Form.Label>Parent Email</Form.Label>
                 <Form.Control
                   type="email"
-                  name="email"
+                  name="parentEmail"
                   value={updatedChild.parentEmail || ""}
                   onChange={handleChange}
                 />
@@ -128,12 +128,12 @@ const UpdateChild = ({ onUpdate }) => {
                 />
               </Form.Group>
 
-              <Form.Group controlId="observations">
-                <Form.Label>Observations</Form.Label>
+              <Form.Group controlId="additionalInfo">
+                <Form.Label>Additional Information</Form.Label>
                 <Form.Control
                   as="textarea"
-                  name="observations"
-                  value={updatedChild.observations || ""}
+                  name="additionalInfo"
+                  value={updatedChild.additionalInfo || ""}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -141,7 +141,7 @@ const UpdateChild = ({ onUpdate }) => {
                 <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
                     <br></br>
               <Button variant="primary" type="submit" style={{backgroundColor: "green", border: "green" }}>
-                Update
+                Save Changes
               </Button>
               <br></br>
               </Card.Footer>
