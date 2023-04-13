@@ -78,18 +78,17 @@
   width: 100%;
 
   // @include tablet {
-  //   flex-direction: column;
+  //   miheightn-: 100vh;
   // }
 
   // @include mobile {
-  //   flex-direction: column;
+  //   min-height: 100vh;  
   // }
 
   .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 
     .connectButton {
       margin-top: 10px;
@@ -156,6 +155,16 @@
           height: auto;
           overflow-y: auto;
           position: relative;
+
+          @include mobile {
+            max-height: 300px; 
+          }
+
+          @include tablet {
+            max-height: 300px; 
+          }
+
+
 
           .lastMessages::-webkit-scrollbar {
             width: 8px;
@@ -268,7 +277,7 @@
         }
 
         .messages {
-          height: calc(100% - 190px);
+          // height: calc(100% - 190px);
           padding: 10px;
           overflow: scroll;
 
@@ -345,6 +354,7 @@
           border-top: 2px solid white;
           display: flex;
           align-items: flex-end;
+          margin-bottom: 10px;;
 
           .inputText {
             cursor: pointer;

@@ -1,5 +1,5 @@
 import React , {useContext} from "react";
-import {Container, Button} from "react-bootstrap";
+import {Container, Button, Col, Row, Card, CardGroup} from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
 import Chat from "../components/Chat";
 import Navigation from "../components/Navigation";
@@ -17,10 +17,22 @@ function Connect() {
     <Navigation />
       <Container className="connect">
         <Container className="wrapper">
-          <Container className="connectArea">
-            <Sidebar />
-            <Chat />
-          </Container>
+        <CardGroup className="connectArea">
+      <Card className="sidebarCard">
+        <Card.Body>
+          <Card.Text>
+          <Sidebar />
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      <Card className="chatCard">
+        <Card.Body>
+          <Card.Text>
+          <Chat />
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </CardGroup>
           {loggedUser && (loggedUser.userRole === "staff" || loggedUser.userRole === "manager") && (
             <Link to="/">
               <Button className="connectButton" variant="primary" size="lg">
