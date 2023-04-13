@@ -10,7 +10,7 @@ const Chat = () => {
     <Container className="chat">
       <br></br>
       <Container className="chatDetails">
-        <span>{data.user?.displayName.toUpperCase()}</span>
+        <span>{data.user?.displayName?.toUpperCase()}</span>
       </Container>
       <br></br>
       <Messages />
