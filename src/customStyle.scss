@@ -76,18 +76,18 @@
   height: 100vh;
   width: 100%;
 
-  @include tablet {
-    flex-direction: column;
-  }
+  // @include tablet {
+  //   flex-direction: column;
+  // }
 
-  @include mobile {
-    flex-direction: column;
-  }
+  // @include mobile {
+  //   flex-direction: column;
+  // }
 
   .wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    // flex-direction: column;
+    // align-items: center;
 
 
     .connectButton {
@@ -150,7 +150,9 @@
         }
 
         .lastMessages {
-          height: calc(100% - 190px); 
+          // height: calc(100% - 190px); 
+          margin-bottom: 5px;
+          height: auto;
           overflow-y: auto;
           position: relative;
 
