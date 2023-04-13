@@ -108,7 +108,7 @@ const ChildDetails = ({child, removeChild}) => {
                     </Link>
                     )}
                     {loggedUser && (loggedUser.userRole === "manager" )&& (
-                    <Button variant="danger" style={{marginBottom: 5}} onClick={() => removeChild(child.id)}>
+                    <Button variant="danger" style={{marginBottom: 5, backgroundColor: "crimson"}} onClick={() => removeChild(child.id)}>
                         Remove
                     </Button>
                     )}

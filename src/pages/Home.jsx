@@ -48,18 +48,15 @@ function Home() {
       <Container className='home'>
         <Welcome />
         <Container>
-        <Row>
-          <Col md={{ span: 6, offset: 3 }}>
             <Form.Control
               type="text"
               placeholder="Search for a child by name"
               onChange={handleSearch}
               value={searchTerm}
               className="mb-3"
+              style={{marginTop: "10px"}}
             />
             <Carousel key={filteredChildren.length} children={filteredChildren} onRefresh={handleRefresh} />
-          </Col>
-        </Row>
         </Container>
         <MainMenu />
       </Container>

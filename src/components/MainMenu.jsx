@@ -6,7 +6,7 @@ import {AuthDetails} from "./AuthDetails";
 function MainMenu() {
   const { loggedUser } = useContext(AuthDetails);
   return (
-    <Container className="mainmenu">
+    <Container className="mainmenu" style={{margin: 5}}>
       <Row className="text-center">
         <Col md={{ span: 6, offset: 3 }}>
         {loggedUser && (loggedUser.userRole === "manager" )&& (
@@ -17,15 +17,15 @@ function MainMenu() {
         </Link>
         )}
 
-        <Link to="/connect">
-          <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
-            Message
-          </Button>
-        </Link>
-
         <Link to="/archive">
           <Button className="archiveButton" variant="primary" size="lg" style={{margin: 5}}>
             Archive
+          </Button>
+        </Link>
+
+        <Link to="/connect">
+          <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
+            Message
           </Button>
         </Link>
         </Col>
