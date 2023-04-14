@@ -27,6 +27,11 @@ const Input = () => {
   const handleSend = async (event) => {
     event.preventDefault();
 
+    // Check if both text and image are empty, then return and do nothing
+    if (!text.trim() && !image) {
+    return;
+  }
+
     // Clear the input, image state, and any previous error messages
     setText("");
     setImage(null);
