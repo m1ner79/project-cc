@@ -18,6 +18,7 @@ const Search = () => {
   const [userName, setUserName] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const { loggedUser } = useContext(AuthDetails);
 
@@ -38,11 +39,21 @@ const Search = () => {
       } else {
         setUser(null);
         setErr(true);
+        setShowError(true); // Set showError to true when person is not found
+
+        setTimeout(() => {
+        setShowError(false); // Reset showError to false after 3 seconds
+      }, 3000);
       }
     } catch (err) {
       console.error("Error searching for user:", err);
       setUser(null);
       setErr(true);
+      setShowError(true); // Set showError to true when error occurs
+
+      setTimeout(() => {
+      setShowError(false); // Reset showError to false after 3 seconds
+    }, 3000);
     }
   };
   
@@ -104,8 +115,8 @@ const Search = () => {
           value={userName}
         />
       </Container>
-      {err && (
-        <Form.Text className="text-muted">
+      {showError && (
+        <Form.Text className="text-muted text-center">
           <b>Person not found</b>
         </Form.Text>
       )}
