@@ -22,59 +22,72 @@ const Input = () => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [err, setErr] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSend = async () => {
-    if (image) {
-      const storageRef = ref(storage, uuidv4());
+  const handleSend = async (event) => {
+    event.preventDefault();
 
-      const uploadTask = uploadBytesResumable(storageRef, image);
-
-      uploadTask.on(
-        (_err) => {
-          //TODO:Handle Error
-          setErr(true);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "allMessages", data.messageId), {
-              messages: arrayUnion({
-                id: uuidv4(),
-                text,
-                senderId: loggedUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          });
-        }
-      );
-    } else {
-      await updateDoc(doc(db, "allMessages", data.messageId), {
-        messages: arrayUnion({
-          id: uuidv4(),
-          text,
-          senderId: loggedUser.uid,
-          date: Timestamp.now(),
-        }),
-      });
-    }
-
-    await updateDoc(doc(db, "userMessages", loggedUser.uid), {
-      [data.messageId + ".lastMessage"]: {
-        text,
-      },
-      [data.messageId + ".date"]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, "userMessages", data.user.uid), {
-      [data.messageId + ".lastMessage"]: {
-        text,
-      },
-      [data.messageId + ".date"]: serverTimestamp(),
-    });
-
+    // Clear the input, image state, and any previous error messages
     setText("");
     setImage(null);
+    setErrorMessage("");
+    
+    try {
+      if (image) {
+        const storageRef = ref(storage, uuidv4());
+  
+        const uploadTask = uploadBytesResumable(storageRef, image);
+  
+        uploadTask.on(
+          (_err) => {
+            //TODO:Handle Error
+            setErr(true);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+              await updateDoc(doc(db, "allMessages", data.messageId), {
+                messages: arrayUnion({
+                  id: uuidv4(),
+                  text,
+                  senderId: loggedUser.uid,
+                  date: Timestamp.now(),
+                  img: downloadURL,
+                }),
+              });
+            });
+          }
+        );
+      } else {
+        await updateDoc(doc(db, "allMessages", data.messageId), {
+          messages: arrayUnion({
+            id: uuidv4(),
+            text,
+            senderId: loggedUser.uid,
+            date: Timestamp.now(),
+          }),
+        });
+      }
+  
+      await updateDoc(doc(db, "userMessages", loggedUser.uid), {
+        [data.messageId + ".lastMessage"]: {
+          text,
+        },
+        [data.messageId + ".date"]: serverTimestamp(),
+      });
+  
+      await updateDoc(doc(db, "userMessages", data.user.uid), {
+        [data.messageId + ".lastMessage"]: {
+          text,
+        },
+        [data.messageId + ".date"]: serverTimestamp(),
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+    setErrorMessage("An error occurred while sending the message.");
+    // Optionally, restore the input text and image to their previous values
+    setText(event.target.value);
+    setImage(event.target.files[0]);
+    }  
   };
   return (
     <Container className="input">
