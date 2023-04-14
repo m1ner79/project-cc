@@ -48,7 +48,7 @@ const Search = () => {
   
 
   const handleKey = (event) => {
-    event.code === "Enter" && handleSearch();
+    event.key === "Enter" && handleSearch();
   };
 
   const handleMessaging = async (user) => {
