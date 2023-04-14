@@ -140,7 +140,16 @@ const UpdateChild = ({ onUpdate }) => {
               <br></br>
                 <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
                     <br></br>
-              <Button variant="primary" type="submit" style={{backgroundColor: "green", border: "green" }}>
+              <Button 
+              variant="primary" 
+              type="submit" 
+              style={{
+                backgroundColor: "blue",
+                    border: "blue",
+                    margin: 5,
+                    height: 38,
+                    width: 130  
+                }}>
                 Save Changes
               </Button>
               <br></br>
@@ -150,7 +159,8 @@ const UpdateChild = ({ onUpdate }) => {
         </Card>
         <Container className="text-center">
         <Link to="/">
-            <Button className="connectButton" variant="primary" size="lg" style={{marginTop: 10}}>
+            <Button 
+            className="connectButton" variant="primary" size="lg" style={{marginTop: 10}}>
               Back to Main Menu
             </Button>
           </Link>

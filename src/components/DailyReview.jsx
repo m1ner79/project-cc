@@ -157,7 +157,13 @@ const DailyReview = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  style={{ backgroundColor: "green", border: "green" }}
+                  style={{ 
+                    backgroundColor: "blue",
+                    border: "blue",
+                    margin: 5,
+                    height: 38,
+                    width: 130 
+                  }}
                 >
                   Add Review
                 </Button>

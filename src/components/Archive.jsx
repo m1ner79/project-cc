@@ -121,7 +121,19 @@ const Archive = () => {
                 style={{ backgroundColor: "white" }}
               >
                 <br></br>
-        <Button onClick={handlePrint}>Print</Button>
+        <Button 
+        onClick={handlePrint}
+        variant="primary"
+        style={{
+          backgroundColor: "blue",
+          border: "blue",
+          margin: 5,
+          height: 38,
+          width: 130 
+        }}
+        >
+          Print
+          </Button>
         {/* Add download and copy functionality */}
         <br></br>
         </Card.Footer>
@@ -133,7 +145,7 @@ const Archive = () => {
               className="connectButton"
               variant="primary"
               size="lg"
-              style={{ margin: 10 }}
+              style={{ margin:10 }}
             >
               Back to Main Menu
             </Button>

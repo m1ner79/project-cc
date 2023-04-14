@@ -111,7 +111,7 @@ const ChildDetails = ({ child, removeChild }) => {
                 border: "blue",
                 margin: 5, 
                 height: 38,
-                width: 120
+                width: 130
               }}
             >
               Add Review
@@ -124,7 +124,7 @@ const ChildDetails = ({ child, removeChild }) => {
                 border: "blue",
                 margin: 5,
                 height: 38,
-                width: 120  
+                width: 130  
             }}
             onClick={copyDailyReviews}
           >
@@ -139,7 +139,7 @@ const ChildDetails = ({ child, removeChild }) => {
                     border: "blue",
                     margin: 5,
                     height: 38,
-                    width: 120 
+                    width: 130 
                 }}
               >
                 Update Child
@@ -154,7 +154,7 @@ const ChildDetails = ({ child, removeChild }) => {
                 backgroundColor: "crimson",
                 border: "crimson",
                 height: 38,
-                width: 120 
+                width: 130 
             }}
               onClick={() => removeChild(child.id)}
             >
