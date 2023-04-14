@@ -108,6 +108,11 @@ const Input = () => {
           onChange={(event) => setImage(event.target.files[0])}
         />
       </Form.Group>
+      {errorMessage && (
+      <Form.Text className="text-danger">
+        <b>{errorMessage}</b>
+      </Form.Text>
+    )}
       <Button variant="custSend" onClick={handleSend}>
         <BiSend />
       </Button>
