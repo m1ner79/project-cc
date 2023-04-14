@@ -7,9 +7,11 @@ const Sidebar = () => {
   return (
     <>
       <Container className="sidebar">
+      <Container className="fixed">
         <br></br>
         <Search />
         <br></br>
+      </Container>
         <Chats />
       </Container>
     </>

@@ -103,7 +103,7 @@ const ChildDetails = ({child, removeChild}) => {
                     <Link to={`/update/${child.id}`}>
                         <Button variant="primary"
                                 style={{backgroundColor: "green", border: "green", marginRight: 5, marginBottom: 5}}>
-                            Update
+                            Update Child
                         </Button>
                     </Link>
                     )}

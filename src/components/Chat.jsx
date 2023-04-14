@@ -8,14 +8,17 @@ const Chat = () => {
   const { data } = useContext(MessageDetails);
   return (
     <Container className="chat">
+      <Container className="fixed">
       <br></br>
       <Container className="chatDetails">
         <span>{data.user?.displayName?.toUpperCase()}</span>
       </Container>
       <br></br>
+      </Container>
       <Messages />
-      <br></br>
+      <Container className="fixed-bottom">
       <Input />
+      </Container>
     </Container>
   );
 };
