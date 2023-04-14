@@ -17,15 +17,15 @@ function MainMenu() {
         </Link>
         )}
 
-        <Link to="/archive">
-          <Button className="archiveButton" variant="primary" size="lg" style={{margin: 5}}>
-            Archive
-          </Button>
-        </Link>
-
         <Link to="/connect">
           <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
             Message
+          </Button>
+        </Link>
+
+        <Link to="/archive">
+          <Button className="archiveButton" variant="primary" size="lg" style={{margin: 5}}>
+            Archive
           </Button>
         </Link>
         </Col>
