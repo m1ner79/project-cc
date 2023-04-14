@@ -89,7 +89,7 @@
     }
 
     .connectArea {
-      height: calc(100% - 190px);
+      height: calc(100% - 150px);
       display: flex;
       flex-direction: row;
       border-radius: 10px;
@@ -107,7 +107,7 @@
 
       .sidebarCard {
         background-color: #009fff;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         flex: 0 0 30%; 
         height: 100%;
 
@@ -116,6 +116,7 @@
           height: 30%;
           margin-bottom: 0%;
           border-radius: 0px;
+          padding-bottom: 10px;
         }
         .sidebar {
           background-color: #009fff;
@@ -189,6 +190,7 @@
         flex: 1;
         height: 100%;
         margin-bottom: 0px;
+        position: relative;
 
         @include mobile {
           height: 70%;
@@ -284,11 +286,12 @@
         }
 
         .fixed-bottom {
-          position: sticky;
+          position: absolute;
           bottom: 0;
           z-index: 100;
           background-color: inherit;
           padding-top: 10px;
+          width: 100%;
 
           .input{
             height: 60px;
@@ -297,7 +300,6 @@
             display: flex;
             align-items: flex-end;
 
-  
             .inputText{
               cursor: pointer;
               border-top-right-radius: 0%;
