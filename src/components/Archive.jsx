@@ -39,23 +39,24 @@ const Archive = () => {
     };
 
     setFilteredChildren(
-      children.filter((child) => {
-        const lowFirstName = child.lowFirstName.toLowerCase();
-        const lowLastName = child.lowLastName.toLowerCase();
-        const nameMatch = search.name
-          ? lowFirstName.includes(search.name.toLowerCase()) ||
-            lowLastName.includes(search.name.toLowerCase())
-          : true;
-        const dateMatch = search.date
-          ? child.dailyReviews.some((review) => {
-              const formattedReviewDate = formatDate(review.date);
-              return formattedReviewDate === search.date;
-            })
-          : true;
+        children.filter((child) => {
+          const lowFirstName = child.lowFirstName.toLowerCase();
+          const lowLastName = child.lowLastName.toLowerCase();
+          const nameMatch = search.name
+              ? lowFirstName.includes(search.name.toLowerCase()) ||
+              lowLastName.includes(search.name.toLowerCase())
+              : true;
+          const dateMatch = search.date
+              ? child.dailyReviews && child.dailyReviews.some((review) => {
+            const formattedReviewDate = formatDate(review.date);
+            return formattedReviewDate === search.date;
+          })
+              : true;
 
-        return nameMatch && dateMatch;
-      })
+          return nameMatch && dateMatch;
+        })
     );
+
   }, [search, children]);
 
   const handlePrint = () => {
@@ -103,7 +104,7 @@ const Archive = () => {
               <tbody>
                 {filteredChildren.map((child) => (
                   <tr key={child.id}>
-                    <td>{child.lowFirstName + " " + child.lowLastName}</td>
+                    <td>{child.lowFirstName.toUpperCase() + " " + child.lowLastName.toUpperCase()}</td>
                     <td>
                       {child.dailyReviews &&
                         child.dailyReviews.map((review, index) => (
