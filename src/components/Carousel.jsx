@@ -31,7 +31,7 @@ const Carousel = ({children, onRefresh}) => {
         }
     };
     return (
-        <BootstrapCarousel>
+        <BootstrapCarousel interval={null}>
             {children.map((child) => (
                 <BootstrapCarousel.Item key={child.id}>
                     <ChildDetails child={child} updateChild={updateChild} removeChild={removeChild}/>
