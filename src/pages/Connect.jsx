@@ -28,7 +28,7 @@ function Connect() {
                     {loggedUser && (loggedUser.userRole === "staff" || loggedUser.userRole === "manager") && (
                         <Container className="text-center">
                         <Link to="/">
-                            <Button className="connectButton" variant="primary" size="lg" style={{marginTop: 10}}>
+                            <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
                                 Back to Main Menu
                             </Button>
                         </Link>
