@@ -178,7 +178,7 @@ const DailyReview = () => {
               className="connectButton"
               variant="primary"
               size="lg"
-              style={{ marginTop: 10 }}
+              style={{ margin: 5 }}
             >
               Back to Main Menu
             </Button>
