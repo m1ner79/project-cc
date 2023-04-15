@@ -158,7 +158,7 @@ const Archive = () => {
               className="connectButton"
               variant="primary"
               size="lg"
-              style={{ margin: 10 }}
+              style={{ margin: 5 }}
             >
               Back to Main Menu
             </Button>
