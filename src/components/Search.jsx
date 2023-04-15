@@ -139,23 +139,23 @@ const Search = () => {
             )}
             {filteredUsers && (
                 filteredUsers.map((u) => (
-                    <Container
-                        key={u.uid}
-                        className="userMessages"
-                        onClick={() => handleMessaging(u)}
-                        style={{marginTop: 10}}>
-                        <Image
-                            className="avatar"
-                            src={u.photoURL}
-                            alt="avatar"
-                            width="30"
-                            height="30"
-                            roundedCircle
-                        />
-                        <Container className="userMessagesInfo">
-                            <span>{u.displayName.toUpperCase()}</span>
+                        <Container
+                            key={u.uid}
+                            className="userMessages"
+                            onClick={() => handleMessaging(u)}
+                            style={{marginTop: 10}}>
+                            <Image
+                                className="avatar"
+                                src={u.photoURL}
+                                alt="avatar"
+                                width="30"
+                                height="30"
+                                roundedCircle
+                            />
+                            <Container className="userMessagesInfo">
+                                <span>{u.displayName.toUpperCase()}</span>
+                            </Container>
                         </Container>
-                    </Container>
                     )
                 ))}
         </Container>
