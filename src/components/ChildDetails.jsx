@@ -109,9 +109,9 @@ const ChildDetails = ({ child, removeChild }) => {
               style={{
                 backgroundColor: "blue",
                 border: "blue",
-                margin: 5, 
+                margin: 5,
                 height: 38,
-                width: 130
+                width: 130,
               }}
             >
               Add Review
@@ -119,12 +119,12 @@ const ChildDetails = ({ child, removeChild }) => {
           </Link>
           <Button
             variant="primary"
-            style={{ 
-                backgroundColor: "blue",
-                border: "blue",
-                margin: 5,
-                height: 38,
-                width: 130  
+            style={{
+              backgroundColor: "blue",
+              border: "blue",
+              margin: 5,
+              height: 38,
+              width: 130,
             }}
             onClick={copyDailyReviews}
           >
@@ -135,11 +135,11 @@ const ChildDetails = ({ child, removeChild }) => {
               <Button
                 variant="primary"
                 style={{
-                    backgroundColor: "blue",
-                    border: "blue",
-                    margin: 5,
-                    height: 38,
-                    width: 130 
+                  backgroundColor: "blue",
+                  border: "blue",
+                  margin: 5,
+                  height: 38,
+                  width: 130,
                 }}
               >
                 Update Child
@@ -149,13 +149,13 @@ const ChildDetails = ({ child, removeChild }) => {
           {loggedUser && loggedUser.userRole === "manager" && (
             <Button
               variant="danger"
-              style={{ 
-                margin: 5, 
+              style={{
+                margin: 5,
                 backgroundColor: "crimson",
                 border: "crimson",
                 height: 38,
-                width: 130 
-            }}
+                width: 130,
+              }}
               onClick={() => removeChild(child.id)}
             >
               Remove
