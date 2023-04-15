@@ -92,6 +92,19 @@ const Archive = () => {
                                         setSearch({...search, name: e.target.value})
                                     }
                                 />
+                              {search.name && (
+                                  <div
+                                      className="alert alert-danger text-center"
+                                      role="alert"
+                                  >
+                                  <Button
+                                      variant="outline-secondary"
+                                      onClick={() => setSearch({...search, name: ""})}
+                                  >
+                                    Clear
+                                  </Button>
+                                  </div>
+                              )}
                             </Form.Group>
                             <Form.Group controlId="searchDate">
                                 <Form.Label>Search by date:</Form.Label>
@@ -102,6 +115,19 @@ const Archive = () => {
                                         setSearch({...search, date: e.target.value})
                                     }
                                 />
+                              {search.date && (
+                                  <div
+                                      className="alert alert-danger text-center"
+                                      role="alert"
+                                  >
+                                  <Button
+                                      variant="outline-secondary"
+                                      onClick={() => setSearch({...search, date: ""})}
+                                  >
+                                    Clear
+                                  </Button>
+                                  </div>
+                              )}
                             </Form.Group>
                         </Form>
                         {error && (
