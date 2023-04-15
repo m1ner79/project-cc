@@ -3,6 +3,8 @@ import { Form, Button, Container, Card, Image } from "react-bootstrap";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import validator from "validator";
+import DOMPurify from "dompurify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,8 +15,18 @@ const Login = () => {
     const email = event.target[0].value;
     const password = event.target[1].value;
 
+    // Validate the email address
+    if (!validator.isEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Sanitize the email address and password
+    const sanitizedEmail = DOMPurify.sanitize(email);
+    const sanitizedPassword = DOMPurify.sanitize(password);
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth,  sanitizedEmail, sanitizedPassword);
         navigate("/");
         
     } catch (error) {
@@ -63,7 +75,7 @@ const Login = () => {
             </Button>
             </Container>
           </Form>
-          {error && <div className="alert alert-danger" role="alert"><Form.Text className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text> </div> }
+          {error && <div className="alert alert-danger text-center" role="alert"><Form.Text className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text> </div> }
         </Card.Body>
         <Card.Footer className="text-muted text-center">
           Did you <Link to="/forgotpassword"><b>Forgot Password?</b></Link><br></br>Are you not registered? <Link to="/register"><b>Register</b></Link>
