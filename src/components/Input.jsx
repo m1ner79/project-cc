@@ -23,6 +23,7 @@ const Input = () => {
   const [image, setImage] = useState(null);
   const [err, setErr] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const handleSend = async (event) => {
     event.preventDefault();
@@ -88,7 +89,15 @@ const Input = () => {
       });
     } catch (error) {
       console.error("Error sending message:", error);
-    setErrorMessage("An error occurred while sending the message.");
+      setErrorMessage("An error occurred while sending the message.");
+      setShowErrorMessage(true);
+
+      // Remove the error message after 3 seconds
+      setTimeout(() => {
+        setShowErrorMessage(false);
+        setErrorMessage("");
+      }, 3000);
+      
     // Optionally, restore the input text and image to their previous values
     setText(event.target.value);
     setImage(event.target.files[0]);
