@@ -50,7 +50,7 @@ const Chats = () => {
               roundedCircle
             />
             <Container className="userInfo">
-              <span>{mess[1].userInfo.displayName}</span>
+              <span>{mess[1].userInfo.displayName.toUpperCase()}</span>
               <p>{mess[1].lastMessage?.text}</p>
               {console.log(mess[1].userInfo.displayName)}
               {console.log(mess[1].lastMessage?.text)}

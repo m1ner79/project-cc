@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Form, Button, Card, Container } from "react-bootstrap";
 import Navigation from "./Navigation";
-import { AuthDetails } from "../components/AuthDetails";
+import { AuthDetails } from "./AuthDetails";
 import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -45,7 +45,7 @@ const DailyReview = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!window.confirm(`Are you happy with the review information for child: ${childName.lowFirstName} ${childName.lowLastName}?`)) return;
+    if (!window.confirm(`Are you happy with the review information for child: ${childName.lowFirstName.toUpperCase()} ${childName.lowLastName.toUpperCase()}?`)) return;
 
     const newReview = {
       date: formattedDate,

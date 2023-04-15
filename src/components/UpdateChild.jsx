@@ -35,7 +35,7 @@ const UpdateChild = ({ onUpdate }) => {
 
     if (
       window.confirm(
-        `Are you sure you want to update child: ${updatedChild.lowFirstName} ${updatedChild.lowLastName}?`
+        `Are you sure you want to update child: ${updatedChild.lowFirstName.toUpperCase()} ${updatedChild.lowLastName.toUpperCase()}?`
       )
     ) {
       await onUpdate(updatedChild);
