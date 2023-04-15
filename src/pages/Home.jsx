@@ -15,8 +15,8 @@ function Home() {
   const [refresh, setRefresh] = useState(false);
 
   const handleRefresh = () => {
-  setRefresh(!refresh);
-};
+    setRefresh(!refresh);
+  };
 
   useEffect(() => {
     const fetchChildren = async () => {
@@ -42,6 +42,7 @@ function Home() {
       lowLastName.includes(searchTerm.toLowerCase())
     );
   });
+
   return (
     <>
       <Navigation />
@@ -56,7 +57,15 @@ function Home() {
               className="mb-3"
               style={{marginTop: "10px"}}
             />
-            <Carousel key={filteredChildren.length} children={filteredChildren} onRefresh={handleRefresh} />
+            {filteredChildren.length > 0 ? (
+              <Carousel key={filteredChildren.length} children={filteredChildren} onRefresh={handleRefresh} />
+            ) : (
+              <p style={{ textAlign: 'center', marginTop: '20px' }}>
+                {searchTerm
+                  ? "There is no child with this name in the system."
+                  : "No children found."}
+              </p>
+            )}
         </Container>
         <MainMenu />
       </Container>
