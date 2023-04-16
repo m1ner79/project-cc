@@ -47,11 +47,11 @@ const ForgotPassword = () => {
           <Card.Body>
             <Form onSubmit={handleForgotPassword} inline>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control required type="email" placeholder="email" />
+                <Form.Control required type="email" placeholder="Enter email registered with the application." />
               </Form.Group>
               {resetEmailSent && (
                 <div className="alert alert-success" role="alert">
-                  <Form.Text className="text-muted">
+                  <Form.Text className="text-muted text-center">
                     <b>Password reset email sent! Please check your inbox.</b>
                   </Form.Text>
                 </div>
@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                   size="lg"
                   style={{ marginBottom: 10 }}
                 >
-                  Forgot Password?
+                  Send Reset Email
                 </Button>
               </Container>
             </Form>
