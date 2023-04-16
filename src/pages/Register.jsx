@@ -92,11 +92,11 @@ const Register = () => {
         navigate("/login");
       } catch (error) {
         // Handle error
-        console.log("Error creating user:", error);
+        // console.log("Error creating user:", error);
       }
     } catch (error) {
       // Handle error
-      console.log(error);
+      // console.log(error);
     }
   };
 

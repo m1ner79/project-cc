@@ -32,10 +32,10 @@ const DailyReview = () => {
         if (docSnap.exists()) {
           setChildName({ id: docSnap.id, ...docSnap.data() });
         } else {
-          console.log("No such document!");
+          // console.log("No such document!");
         }
       } catch (error) {
-        console.error("Error fetching child: ", error);
+        // console.error("Error fetching child: ", error);
       }
     };
 
@@ -66,7 +66,7 @@ const DailyReview = () => {
       });
       navigate(`/`);
     } catch (error) {
-      console.error("Error adding daily review:", error);
+      // console.error("Error adding daily review:", error);
     }
   };
 

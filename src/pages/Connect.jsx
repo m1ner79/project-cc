@@ -10,7 +10,7 @@ import {AuthDetails} from "../components/AuthDetails";
 function Connect() {
     const {loggedUser} = useContext(AuthDetails);
 
-    console.log("user", loggedUser);
+    // console.log("user", loggedUser);
 
     return (
         <>

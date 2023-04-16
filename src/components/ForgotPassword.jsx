@@ -21,9 +21,9 @@ const ForgotPassword = () => {
           navigate("/login"); // or use "/" if login is the root path
         }, 3000); // Redirects after 3 seconds
       } catch (error) {
-        console.error("Error sending password reset email:", error);
-        console.error("Error code:", error.code);
-        console.error("Error message:", error.message);
+        // console.error("Error sending password reset email:", error);
+        // console.error("Error code:", error.code);
+        // console.error("Error message:", error.message);
 
         if (error.code === "auth/user-not-found") {
           setError("No user found with this email address.");

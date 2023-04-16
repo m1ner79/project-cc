@@ -15,7 +15,7 @@ const Messages = () => {
 
         setMessages(doc.data().messages);
       } else {
-        console.log("No such document!");
+        // console.log("No such document!");
       }
     });
     return () => unsub();

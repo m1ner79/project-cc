@@ -6,7 +6,7 @@ import { MessageDetails } from "./MessageDetails";
 const Message = ({ message }) => {
   const { loggedUser } = useContext(AuthDetails);
   const { data } = useContext(MessageDetails);
-  console.log(message);
+  // console.log(message);
 
   const ref = useRef();
 

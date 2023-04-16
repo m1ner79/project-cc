@@ -6,7 +6,7 @@ import { auth } from "../firebase";
 
 const Navigation = () => {
   const { loggedUser } = useContext(AuthDetails);
-  console.log({ loggedUser });
+  // console.log({ loggedUser });
 
   return (
     <Navbar

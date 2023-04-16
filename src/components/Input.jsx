@@ -88,7 +88,7 @@ const Input = () => {
         [data.messageId + ".date"]: serverTimestamp(),
       });
     } catch (error) {
-      console.error("Error sending message:", error);
+      // console.error("Error sending message:", error);
       setErrorMessage("An error occurred while sending the message.");
       setShowErrorMessage(true);
 

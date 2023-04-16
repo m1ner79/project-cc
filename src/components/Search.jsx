@@ -47,7 +47,7 @@ const Search = () => {
                 }, 3000);
             }
         } catch (err) {
-            console.error("Error searching for user:", err);
+            // console.error("Error searching for user:", err);
             setUser(null);
             setErr(true);
             setShowError(true); // Set showError to true when error occurs

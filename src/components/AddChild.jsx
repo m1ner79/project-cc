@@ -57,7 +57,7 @@ const AddChild = () => {
     };
     try {
       const docRef = await addDoc(collection(db, "children"), child);
-      console.log("Child added with ID: ", docRef.id);
+      // console.log("Child added with ID: ", docRef.id);
 
       // Update the childId in the database
       await updateDoc(doc(db, "children", docRef.id), {
@@ -74,7 +74,7 @@ const AddChild = () => {
       setAdditionalInfo("");
       setChildId(docRef.id);
     } catch (error) {
-      console.error("Error adding child: ", error);
+      // console.error("Error adding child: ", error);
     }
   };
 

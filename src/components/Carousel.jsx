@@ -11,13 +11,13 @@ const Carousel = ({children, onRefresh}) => {
         try {
             await deleteDoc(doc(db, "children", id));
         } catch (error) {
-            console.error("Error removing child: ", error);
+            // console.error("Error removing child: ", error);
         }
     };
 
     const updateChild = (id) => {
         // handle updating child details here
-        console.log('Update child with id:', id);
+        // console.log('Update child with id:', id);
     };
 
     const removeChild = (id) => {
@@ -26,7 +26,7 @@ const Carousel = ({children, onRefresh}) => {
 
         if (window.confirm(`Are you sure you want to remove this child: ${childFullName}?`)) {
             deleteChildFromDb(id);
-            console.log("Remove child with id:", id);
+            // console.log("Remove child with id:", id);
             onRefresh(); // Trigger a refresh in the Home component
         }
     };

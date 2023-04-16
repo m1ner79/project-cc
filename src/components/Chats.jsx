@@ -25,7 +25,7 @@ const Chats = () => {
     };
     loggedUser.uid && fetchMessages();
   }, [loggedUser.uid]);
-  console.log(messages);
+  // console.log(messages);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
@@ -52,8 +52,8 @@ const Chats = () => {
             <Container className="userInfo">
               <span>{mess[1].userInfo.displayName.toUpperCase()}</span>
               <p>{mess[1].lastMessage?.text}</p>
-              {console.log(mess[1].userInfo.displayName)}
-              {console.log(mess[1].lastMessage?.text)}
+              {/*{console.log(mess[1].userInfo.displayName)}*/}
+              {/*{console.log(mess[1].lastMessage?.text)}*/}
             </Container>
           </Container>
         ))}
