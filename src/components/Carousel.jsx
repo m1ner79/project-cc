@@ -1,3 +1,7 @@
+/*
+@author Michal Gornicki
+@Start Date 04/12/2022
+*/
 import React from 'react';
 import {Carousel as BootstrapCarousel} from 'react-bootstrap';
 import ChildDetails from './ChildDetails';

@@ -1,3 +1,7 @@
+/*
+@author Michal Gornicki
+@Start Date 04/12/2022
+*/
 import React, {useState, useEffect} from "react";
 import {Container, Form, Table, Button, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
@@ -56,7 +60,7 @@ const Archive = () => {
             return nameMatch && dateMatch;
         });
 
-      // Only show the error message if there are no results and the user has entered a name or date
+        // Only show the error message if there are no results and the user has entered a name or date
         if (filtered.length === 0 && (search.name || search.date)) {
             setError(true);
             setTimeout(() => {
@@ -92,19 +96,19 @@ const Archive = () => {
                                         setSearch({...search, name: e.target.value})
                                     }
                                 />
-                              {search.name && (
-                                  <div
-                                      className="alert alert-danger text-center"
-                                      role="alert"
-                                  >
-                                  <Button
-                                      variant="outline-secondary"
-                                      onClick={() => setSearch({...search, name: ""})}
-                                  >
-                                    Clear
-                                  </Button>
-                                  </div>
-                              )}
+                                {search.name && (
+                                    <div
+                                        className="alert alert-danger text-center"
+                                        role="alert"
+                                    >
+                                        <Button
+                                            variant="outline-secondary"
+                                            onClick={() => setSearch({...search, name: ""})}
+                                        >
+                                            Clear
+                                        </Button>
+                                    </div>
+                                )}
                             </Form.Group>
                             <Form.Group controlId="searchDate">
                                 <Form.Label>Search by date:</Form.Label>
@@ -115,19 +119,19 @@ const Archive = () => {
                                         setSearch({...search, date: e.target.value})
                                     }
                                 />
-                              {search.date && (
-                                  <div
-                                      className="alert alert-danger text-center"
-                                      role="alert"
-                                  >
-                                  <Button
-                                      variant="outline-secondary"
-                                      onClick={() => setSearch({...search, date: ""})}
-                                  >
-                                    Clear
-                                  </Button>
-                                  </div>
-                              )}
+                                {search.date && (
+                                    <div
+                                        className="alert alert-danger text-center"
+                                        role="alert"
+                                    >
+                                        <Button
+                                            variant="outline-secondary"
+                                            onClick={() => setSearch({...search, date: ""})}
+                                        >
+                                            Clear
+                                        </Button>
+                                    </div>
+                                )}
                             </Form.Group>
                         </Form>
                         {error && (

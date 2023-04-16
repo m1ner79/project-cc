@@ -1,3 +1,6 @@
+/*@author Michal Gornicki
+@Start date 04/12/2022  */
+
 @mixin mobile {
   @media screen and (max-width: 480px) {
     @content;
@@ -118,6 +121,7 @@
           border-radius: 0px;
           padding-bottom: 10px;
         }
+
         .sidebar {
           background-color: #009fff;
           overflow-y: auto;
@@ -196,6 +200,7 @@
           height: 65%;
           border-radius: 0px;
         }
+
         .chat {
           background-color: #273c4d;
           overflow-y: auto;
@@ -207,7 +212,7 @@
             z-index: 100;
             background-color: inherit;
 
-            .chatDetails{
+            .chatDetails {
               height: 50px;
               border-bottom: 2px solid white;
               display: flex;
@@ -220,7 +225,7 @@
           }
         }
 
-        .messages{
+        .messages {
           padding: 10px;
           overflow-y: auto;
 
@@ -229,7 +234,7 @@
             align-items: flex-start;
             margin-bottom: 10px;
 
-            .messageSubject{
+            .messageSubject {
               // display: flex;
               // flex-direction: column;
               padding: 10px 20px;
@@ -294,20 +299,20 @@
           padding-top: 10px;
           width: 100%;
 
-          .input{
+          .input {
             height: 60px;
             border-top: 2px solid white;
             padding-bottom: 10px;
             display: flex;
             align-items: flex-end;
 
-            .inputText{
+            .inputText {
               cursor: pointer;
               border-top-right-radius: 0%;
               border-bottom-right-radius: 0%;
             }
 
-            .btn-custSend{
+            .btn-custSend {
               padding-top: -10px;
               border-top-left-radius: 0%;
               border-bottom-left-radius: 0%;
@@ -315,12 +320,12 @@
               size: 24px;
               font-size: medium;
 
-              &:hover{
+              &:hover {
                 background-color: #b79600;
               }
             }
 
-            .inputArea{
+            .inputArea {
               background-color: white;
               font-size: medium;
               border-radius: 0%;

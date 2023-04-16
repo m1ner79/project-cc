@@ -1,3 +1,7 @@
+/*
+@author Michal Gornicki
+@Start Date 04/12/2022
+*/
 import React, {useContext} from "react";
 import {Container, Button, Card, CardGroup} from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
@@ -27,12 +31,12 @@ function Connect() {
                     </CardGroup>
                     {loggedUser && (loggedUser.userRole === "staff" || loggedUser.userRole === "manager") && (
                         <Container className="text-center">
-                        <Link to="/">
-                            <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
-                                Back to Main Menu
-                            </Button>
-                        </Link>
-                    </Container>
+                            <Link to="/">
+                                <Button className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
+                                    Back to Main Menu
+                                </Button>
+                            </Link>
+                        </Container>
                     )}
                 </Container>
             </Container>

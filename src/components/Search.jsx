@@ -1,3 +1,7 @@
+/*
+@author Michal Gornicki
+@Start Date 04/12/2022
+*/
 import React, {useContext, useState, useEffect} from "react";
 import {Container, Form, Image} from "react-bootstrap";
 import {
