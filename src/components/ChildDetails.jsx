@@ -35,14 +35,14 @@ const ChildDetails = ({ child, removeChild }) => {
 
     navigator.clipboard.writeText(reviewsText).then(
       () => {
-        console.log("Daily reviews copied to clipboard!");
+        // console.log("Daily reviews copied to clipboard!");
         setShowCopyPopup(true);
         setTimeout(() => {
           setShowCopyPopup(false);
         }, 3000);
       },
       (err) => {
-        console.error("Could not copy daily reviews: ", err);
+        // console.error("Could not copy daily reviews: ", err);
       }
     );
   };
@@ -78,8 +78,7 @@ const ChildDetails = ({ child, removeChild }) => {
           {child.additionalInfo}
         </Card.Text>
         <Card.Text>
-          <b>Daily Reviews - {new Date().toLocaleDateString()}</b>
-          <hr />
+            <h5><b><u>Daily Reviews - {new Date().toLocaleDateString()}</u></b></h5>
           {child.dailyReviews &&
             child.dailyReviews
               .filter((review) => review.date === getCurrentFormattedDate())
@@ -94,7 +93,6 @@ const ChildDetails = ({ child, removeChild }) => {
                   <b>Updated By:</b> {review.updatedBy} <br />
                   <b>Updated At:</b>{" "}
                   {new Date(review.timestamp?.toDate()).toLocaleTimeString()}
-                  <hr />
                 </div>
               ))}
         </Card.Text>
