@@ -29,6 +29,8 @@
 
   .btn {
     width: 140px;
+    background-color: #f4900c;
+    border: #f4900c;
   }
 }
 
@@ -55,12 +57,52 @@
   }
 }
 
+.forgotPass {
+  margin-top: 10px;
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot a{
+    color: #f4900c;
+    text-decoration: none;
+  }
+}
+
 .regForm {
   margin-top: 10px;
+  .regFormCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot a{
+    color: #f4900c;
+    text-decoration: none;
+  }
 }
 
 .login {
   margin-top: 10px;
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot a{
+    color: #f4900c;
+    text-decoration: none;
+  }
 }
 
 .navigation {
@@ -78,6 +120,95 @@
     color: #F4900C;
   }
 }
+
+.carousel{
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot button{
+    background-color: #f4900c;
+    border: #f4900c;
+    margin: 5px 5px 10px 5px;
+    height: 38px;
+    width: 130px;
+  }
+}
+
+.dailyReview{
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot button{
+    background-color: #f4900c;
+    border: #f4900c;
+    margin: 5px;
+    height: 38px;
+    width: 130px;
+  }
+}
+
+.addChild{
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot button{
+    background-color: #f4900c;
+    border: #f4900c;
+    margin: 5px;
+    height: 38px;
+    width: 130px;
+  }
+}
+
+.updateChild{
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot button{
+    background-color: #f4900c;
+    border: #f4900c;
+    margin: 5px;
+    height: 38px;
+    width: 130px;
+  }
+}
+.archive{
+  .formCard{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot{
+    background-color: black;
+    color: white;
+  }
+  .formCardFoot button{
+    background-color: #f4900c;
+    border: #f4900c;
+    height: 38px;
+    width: 130px;
+  }
+}
+
 
 .connect {
   height: 100vh;

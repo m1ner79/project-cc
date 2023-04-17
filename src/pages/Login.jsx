@@ -74,7 +74,7 @@ const Login = () => {
                             </Form.Text>
                         </Form.Group>
                         <Container className="text-center">
-                            <Button variant="primary" type="submit" size="lg" style={{marginBottom: 10}}>
+                            <Button variant="primary" type="submit" size="lg" style={{margin: 5, backgroundColor: "#f4900c",border: "#f4900c"}}>
                                 Sign In
                             </Button>
                         </Container>
@@ -83,7 +83,7 @@ const Login = () => {
                         className="text-muted"><b>Entered details need to be corrected. Try again.</b></Form.Text>
                     </div>}
                 </Card.Body>
-                <Card.Footer className="text-muted text-center">
+                <Card.Footer className="formCardFoot text-center">
                     Did you <Link to="/forgotpassword"><b>Forgot Password?</b></Link><br></br>Are you not
                     registered? <Link to="/register"><b>Register</b></Link>
                 </Card.Footer>

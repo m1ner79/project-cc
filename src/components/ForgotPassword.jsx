@@ -73,14 +73,14 @@ const ForgotPassword = () => {
                                     variant="primary"
                                     type="submit"
                                     size="lg"
-                                    style={{marginBottom: 10}}
+                                    style={{margin:5, backgroundColor: "#f4900c",border: "#f4900c"}}
                                 >
                                     Send Reset Email
                                 </Button>
                             </Container>
                         </Form>
                     </Card.Body>
-                    <Card.Footer className="text-muted text-center">
+                    <Card.Footer className="formCardFoot text-center">
                         Go back to{" "}
                         <Link to="/login">
                             <b>Login</b>

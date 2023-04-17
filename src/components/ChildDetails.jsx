@@ -52,7 +52,7 @@ const ChildDetails = ({child, removeChild}) => {
     };
 
     return (
-        <Card>
+        <Card className="carousel">
             <Card.Header className="formCard text-center" as="h5">
                 {fullNameCaps}
             </Card.Header>
@@ -101,33 +101,17 @@ const ChildDetails = ({child, removeChild}) => {
                             ))}
                 </Card.Text>
                 <Card.Footer
-                    className="text-center"
-                    style={{backgroundColor: "white"}}
+                    className="formCardFoot text-center"
                 >
-                    <br></br>
                     <Link to={`/daily-review/${child.id}`}>
                         <Button
                             variant="primary"
-                            style={{
-                                backgroundColor: "blue",
-                                border: "blue",
-                                margin: 5,
-                                height: 38,
-                                width: 130,
-                            }}
                         >
                             Add Review
                         </Button>
                     </Link>
                     <Button
                         variant="primary"
-                        style={{
-                            backgroundColor: "blue",
-                            border: "blue",
-                            margin: 5,
-                            height: 38,
-                            width: 130,
-                        }}
                         onClick={copyDailyReviews}
                     >
                         Copy Review
@@ -136,13 +120,6 @@ const ChildDetails = ({child, removeChild}) => {
                         <Link to={`/update/${child.id}`}>
                             <Button
                                 variant="primary"
-                                style={{
-                                    backgroundColor: "blue",
-                                    border: "blue",
-                                    margin: 5,
-                                    height: 38,
-                                    width: 130,
-                                }}
                             >
                                 Update Child
                             </Button>
@@ -152,11 +129,8 @@ const ChildDetails = ({child, removeChild}) => {
                         <Button
                             variant="danger"
                             style={{
-                                margin: 5,
                                 backgroundColor: "crimson",
                                 border: "crimson",
-                                height: 38,
-                                width: 130,
                             }}
                             onClick={() => removeChild(child.id)}
                         >

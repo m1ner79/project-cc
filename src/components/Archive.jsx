@@ -183,20 +183,11 @@ const Archive = () => {
                             </tbody>
                         </Table>
                         <Card.Footer
-                            className="text-center"
-                            style={{backgroundColor: "white"}}
+                            className="formCardFoot text-center"
                         >
-                            <br></br>
                             <Button
                                 onClick={handlePrint}
                                 variant="primary"
-                                style={{
-                                    backgroundColor: "blue",
-                                    border: "blue",
-                                    margin: 5,
-                                    height: 38,
-                                    width: 130,
-                                }}
                             >
                                 Print
                             </Button>
@@ -211,7 +202,7 @@ const Archive = () => {
                             className="connectButton"
                             variant="primary"
                             size="lg"
-                            style={{margin: 5}}
+                            style={{margin: 5,backgroundColor: "#f4900c",border: "#f4900c"}}
                         >
                             Back to Main Menu
                         </Button>

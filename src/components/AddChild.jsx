@@ -172,20 +172,11 @@ const AddChild = () => {
                             </Form.Group>
                             <br></br>
                             <Card.Footer
-                                className="text-center"
-                                style={{backgroundColor: "white"}}
+                                className="formCardFoot text-center"
                             >
-                                <br></br>
                                 <Button
                                     variant="primary"
                                     type="submit"
-                                    style={{
-                                        backgroundColor: "blue",
-                                        border: "blue",
-                                        margin: 5,
-                                        height: 38,
-                                        width: 130,
-                                    }}
                                 >
                                     Add Child
                                 </Button>
@@ -200,7 +191,7 @@ const AddChild = () => {
                             className="connectButton"
                             variant="primary"
                             size="lg"
-                            style={{margin: 5}}
+                            style={{margin: 5, backgroundColor: "#f4900c",border: "#f4900c"}}
                         >
                             Back to Main Menu
                         </Button>

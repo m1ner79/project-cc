@@ -289,13 +289,13 @@ const Register = () => {
                         </Form.Group>
                         <br></br>
                         <Container className="text-center">
-                            <Button variant="primary" type="submit" size="lg" style={{marginBottom: 10}}>
+                            <Button variant="primary" type="submit" size="lg" style={{margin: 5, backgroundColor: "#f4900c",border: "#f4900c"}}>
                                 Sign Up
                             </Button>
                         </Container>
                     </Form>
                 </Card.Body>
-                <Card.Footer className="text-muted text-center">
+                <Card.Footer className="formCardFoot text-center">
                     Are you already registered? <Link to="/login"><b>Login</b></Link>
                 </Card.Footer>
             </Card>

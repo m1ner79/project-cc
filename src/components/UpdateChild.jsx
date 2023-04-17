@@ -142,18 +142,10 @@ const UpdateChild = ({onUpdate}) => {
                                 />
                             </Form.Group>
                             <br></br>
-                            <Card.Footer className="text-center" style={{backgroundColor: "white"}}>
-                                <br></br>
+                            <Card.Footer className="formCardFoot text-center">
                                 <Button
                                     variant="primary"
-                                    type="submit"
-                                    style={{
-                                        backgroundColor: "blue",
-                                        border: "blue",
-                                        margin: 5,
-                                        height: 38,
-                                        width: 130
-                                    }}>
+                                    type="submit">
                                     Save Changes
                                 </Button>
                                 <br></br>
@@ -164,7 +156,7 @@ const UpdateChild = ({onUpdate}) => {
                 <Container className="text-center">
                     <Link to="/">
                         <Button
-                            className="connectButton" variant="primary" size="lg" style={{margin: 5}}>
+                            className="connectButton" variant="primary" size="lg" style={{margin: 5, backgroundColor: "#f4900c",border: "#f4900c" }}>
                             Back to Main Menu
                         </Button>
                     </Link>
