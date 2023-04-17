@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# To install this project
+
+First of all, you are going to need NPM (or Yarn, alternatively).
+
+Once you download this onto your machine you need to run:
+
+### `npm install`
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
