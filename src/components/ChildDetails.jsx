@@ -146,7 +146,7 @@ const ChildDetails = ({child, removeChild}) => {
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
                                 zIndex: 100,
-                                backgroundColor: "white",
+                                backgroundColor: "#f4900c",
                                 borderRadius: "5px",
                                 padding: "10px",
                                 boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
